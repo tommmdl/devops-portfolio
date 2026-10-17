@@ -8,7 +8,7 @@ Portfólio de engenharia DevOps com **um repositório por ferramenta ou domínio
 
 | Repositório | Conhecimentos | Estado |
 | --- | --- | --- |
-| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, pipeline declarativo, artefatos e falhas | Publicado; execução no Jenkins pendente |
+| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, pipeline declarativo, artefatos e falhas | Publicado; builds SUCCESS e FAILURE validados |
 | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash e diagnóstico | Publicado; script validado no WSL |
 
 Os três repositórios foram publicados na conta `tommmdl`.
