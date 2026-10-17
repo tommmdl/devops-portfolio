@@ -9,4 +9,6 @@ Use o [modelo](../templates/daily-log.md) e crie `day-NNN.md` após realizar a a
 
 - Docker: aplicação de notas bilíngue com PostgreSQL publicada em 17/10/2026; 23 testes verificaram CRUD, persistência e recuperação de indisponibilidade. [Evidências](https://github.com/tommmdl/docker-lab/blob/main/docs/validation.md).
 
+- GitHub Actions: pipeline publicado em 17/10/2026; 23 testes passaram, a mesma imagem foi publicada no GHCR e o pull anônimo e uso local foram validados. [Evidências](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.md).
+
 Registre apenas resultados reais, com link para o repositório correspondente.

@@ -9,4 +9,6 @@ Use the [template](../templates/daily-log.en.md) to create `day-NNN.md` after pe
 
 - Docker: bilingual notes application with PostgreSQL published on 2026-10-17; 23 checks verified CRUD, persistence and outage recovery. [Evidence](https://github.com/tommmdl/docker-lab/blob/main/docs/validation.en.md).
 
+- GitHub Actions: pipeline published on 2026-10-17; 23 checks passed, the exact tested image was published to GHCR, and anonymous pull/local consumption were verified. [Evidence](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.en.md).
+
 Record actual results and link to the relevant repository.
