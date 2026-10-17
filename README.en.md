@@ -15,8 +15,9 @@ Each lab has its own repository with code, instructions and a record of what was
 | [Jenkins](https://github.com/tommmdl/jenkins-lab) | A first pipeline, a successful build and a deliberate failure to help make sense of the logs. |
 | [GitHub Actions](https://github.com/tommmdl/github-actions-lab) | Testing the application before publishing its image to GHCR. |
 | [Terraform](https://github.com/tommmdl/terraform-lab) | Describing the same environment as code: creating it, reviewing changes, fixing drift and cleaning up. |
+| [Ansible](https://github.com/tommmdl/ansible-lab) | One role configures two targets, followed by unchanged reruns, templates, handlers and drift repair. |
 
-If you are new to these topics, I would start with Linux and Docker. Later projects reuse the same application so the focus stays on the tools rather than learning a new product each time.
+If you are new to these topics, I would start with Linux and Docker. Several projects reuse the notes app to connect the topics. Ansible uses two small targets to explore server configuration.
 
 ## What has been tried
 
@@ -41,7 +42,7 @@ The 100-day roadmap gives the work some direction. The pace can change as exerci
 | 81–90 | Observability and SRE |
 | 91–100 | Integration, recovery and presenting the projects |
 
-Ansible, Kubernetes, GitOps, observability and security are next on this route. Projects join the index as they are developed; the roadmap is not a list of completed work.
+Kubernetes, GitOps, observability and security are next on this route. Projects join the index as they are developed; the roadmap is not a list of completed work.
 
 ## Keeping notes
 
