@@ -1,0 +1,10 @@
+artifacts/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfplan
