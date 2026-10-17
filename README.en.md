@@ -8,16 +8,17 @@ DevOps engineering portfolio with **one repository per tool or domain**. This re
 
 | Repository | Skills | Status |
 | --- | --- | --- |
+| [terraform-lab](https://github.com/tommmdl/terraform-lab) | Terraform, modules, state, drift and lifecycle | Published; 22 local checks and CI passed |
 | [github-actions-lab](https://github.com/tommmdl/github-actions-lab) | GitHub Actions, integration tests and GHCR publication | Published; 23 checks and GHCR publication verified |
 | [docker-lab](https://github.com/tommmdl/docker-lab) | Docker, Compose, API, PostgreSQL and persistence | Published; 23 integration checks passed |
 | [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, declarative pipelines, artifacts and failures | Published; SUCCESS and FAILURE builds verified |
 | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash and diagnostics | Published; script checked in WSL |
 
-All five repositories are published under `tommmdl`.
+All six repositories are published under `tommmdl`.
 
 ## Planned repositories
 
-`terraform-lab`, `ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` and `devsecops-lab`.
+`ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` and `devsecops-lab`.
 
 Each repository will document the problem, architecture where useful, reproduction, verification, troubleshooting, decisions and cleanup. Create repositories when concrete deliverables are available.
 

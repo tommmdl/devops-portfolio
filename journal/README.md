@@ -11,4 +11,6 @@ Use o [modelo](../templates/daily-log.md) e crie `day-NNN.md` após realizar a a
 
 - GitHub Actions: pipeline publicado em 17/10/2026; 23 testes passaram, a mesma imagem foi publicada no GHCR e o pull anônimo e uso local foram validados. [Evidências](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.md).
 
+- Terraform: infraestrutura Docker modular publicada em 17/10/2026; 22 verificações cobriram apply, idempotência, persistência, drift e destroy. CI de validação aprovado. [Evidências](https://github.com/tommmdl/terraform-lab/blob/main/docs/validation.md).
+
 Registre apenas resultados reais, com link para o repositório correspondente.

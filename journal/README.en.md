@@ -11,4 +11,6 @@ Use the [template](../templates/daily-log.en.md) to create `day-NNN.md` after pe
 
 - GitHub Actions: pipeline published on 2026-10-17; 23 checks passed, the exact tested image was published to GHCR, and anonymous pull/local consumption were verified. [Evidence](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.en.md).
 
+- Terraform: modular Docker infrastructure published on 2026-10-17; 22 checks covered apply, idempotence, persistence, drift and destroy. Validation CI passed. [Evidence](https://github.com/tommmdl/terraform-lab/blob/main/docs/validation.en.md).
+
 Record actual results and link to the relevant repository.

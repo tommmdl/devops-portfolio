@@ -8,16 +8,17 @@ Portfólio de engenharia DevOps com **um repositório por ferramenta ou domínio
 
 | Repositório | Conhecimentos | Estado |
 | --- | --- | --- |
+| [terraform-lab](https://github.com/tommmdl/terraform-lab) | Terraform, módulos, state, drift e ciclo de vida | Publicado; 22 checks locais e CI aprovados |
 | [github-actions-lab](https://github.com/tommmdl/github-actions-lab) | GitHub Actions, testes de integração e publicação no GHCR | Publicado; 23 testes e publicação no GHCR validados |
 | [docker-lab](https://github.com/tommmdl/docker-lab) | Docker, Compose, API, PostgreSQL e persistência | Publicado; 23 testes de integração passaram |
 | [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, pipeline declarativo, artefatos e falhas | Publicado; builds SUCCESS e FAILURE validados |
 | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash e diagnóstico | Publicado; script validado no WSL |
 
-Os cinco repositórios foram publicados na conta `tommmdl`.
+Os seis repositórios foram publicados na conta `tommmdl`.
 
 ## Próximos repositórios planejados
 
-`terraform-lab`, `ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` e `devsecops-lab`.
+`ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` e `devsecops-lab`.
 
 Cada repositório terá problema, arquitetura quando útil, execução reproduzível, validação, troubleshooting, decisões e limpeza. Serão criados conforme houver entregas concretas.
 
