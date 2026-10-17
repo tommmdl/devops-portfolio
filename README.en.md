@@ -8,10 +8,10 @@ DevOps engineering portfolio with **one repository per tool or domain**. This re
 
 | Repository | Skills | Status |
 | --- | --- | --- |
-| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, declarative pipelines, artifacts and failures | Local starter; publishing and Jenkins execution pending |
-| [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash and diagnostics | Script checked in WSL; publishing pending |
+| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, declarative pipelines, artifacts and failures | Published; execution inside Jenkins pending |
+| [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash and diagnostics | Published; script checked in WSL |
 
-Links are intended destinations until publication is confirmed.
+All three repositories are published under `tommmdl`.
 
 ## Planned repositories
 
