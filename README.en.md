@@ -1,33 +1,37 @@
-# DevOps Portfolio — Rafael Santiago Silva
+# DevOps in practice
 
-English | [Português](README.md)
+English · [Português](README.md)
 
-DevOps engineering portfolio with **one repository per tool or domain**. This repository is the index, roadmap and learning journal. Each lab maintains its own implementation and documentation.
+This is where I collect my DevOps projects and the things I am exploring to understand each tool. The idea is to get something running, introduce a few failures and learn how to investigate and recover the environment.
 
-## Repositories
+Each lab has its own repository with code, instructions and a record of what was tested. Follow the sequence or pick a topic that interests you.
 
-| Repository | Skills | Status |
-| --- | --- | --- |
-| [terraform-lab](https://github.com/tommmdl/terraform-lab) | Terraform, modules, state, drift and lifecycle | Published; 22 local checks and CI passed |
-| [github-actions-lab](https://github.com/tommmdl/github-actions-lab) | GitHub Actions, integration tests and GHCR publication | Published; 23 checks and GHCR publication verified |
-| [docker-lab](https://github.com/tommmdl/docker-lab) | Docker, Compose, API, PostgreSQL and persistence | Published; 23 integration checks passed |
-| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, declarative pipelines, artifacts and failures | Published; SUCCESS and FAILURE builds verified |
-| [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash and diagnostics | Published; script checked in WSL |
+## Where to start
 
-All six repositories are published under `tommmdl`.
-
-## Planned repositories
-
-`ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` and `devsecops-lab`.
-
-Each repository will document the problem, architecture where useful, reproduction, verification, troubleshooting, decisions and cleanup. Create repositories when concrete deliverables are available.
-
-## 100-day roadmap
-
-| Days | Focus |
+| Project | What you will find |
 | --- | --- |
-| 01–10 | Linux, Bash, Git |
-| 11–20 | Networking, DNS, HTTP, TLS |
+| [Linux](https://github.com/tommmdl/linux-operations-lab) | A script to inspect memory, disk and system load while practising basic diagnostics. |
+| [Docker](https://github.com/tommmdl/docker-lab) | A notes app with PostgreSQL for exploring networks, volumes and what happens when the database stops. |
+| [Jenkins](https://github.com/tommmdl/jenkins-lab) | A first pipeline, a successful build and a deliberate failure to help make sense of the logs. |
+| [GitHub Actions](https://github.com/tommmdl/github-actions-lab) | Testing the application before publishing its image to GHCR. |
+| [Terraform](https://github.com/tommmdl/terraform-lab) | Describing the same environment as code: creating it, reviewing changes, fixing drift and cleaning up. |
+
+If you are new to these topics, I would start with Linux and Docker. Later projects reuse the same application so the focus stays on the tools rather than learning a new product each time.
+
+## What has been tried
+
+The repositories include commands and results from Jenkins success/failure builds, database integration tests, image publication and the Terraform infrastructure lifecycle. Each project also explains the limits of those checks.
+
+These are learning environments. The records distinguish assistant-assisted execution from work still awaiting the author's exploration.
+
+## A route to follow
+
+The 100-day roadmap gives the work some direction. The pace can change as exercises become more interesting or difficult.
+
+| Days | Topic |
+| --- | --- |
+| 01–10 | Linux, Bash and Git |
+| 11–20 | Networking, DNS, HTTP and TLS |
 | 21–30 | Docker and Compose |
 | 31–40 | Jenkins and GitHub Actions |
 | 41–50 | Terraform |
@@ -35,12 +39,14 @@ Each repository will document the problem, architecture where useful, reproducti
 | 61–70 | Kubernetes |
 | 71–80 | GitOps and security |
 | 81–90 | Observability and SRE |
-| 91–100 | Integration, recovery and presentation |
+| 91–100 | Integration, recovery and presenting the projects |
 
-This is a proposed roadmap, not completed experience. Jenkins starts as a parallel lab at the author's request.
+Ansible, Kubernetes, GitOps, observability and security are next on this route. Projects join the index as they are developed; the roadmap is not a list of completed work.
 
-## Daily progress
+## Keeping notes
 
-Use the [template](templates/daily-log.en.md) and [journal](journal/README.en.md) to record actual implementation, investigation, fixes or verified documentation. Automatic daily publishing is not configured.
+The [journal](journal/README.en.md) tracks progress. The [daily template](templates/daily-log.en.md) helps capture decisions, mistakes and next steps alongside the code. Automatic daily publication is not configured.
 
-Maintain Portuguese and English documentation in each repository. Never commit credentials, private reports or infrastructure state containing secrets. Document costs and resource cleanup before using paid cloud resources.
+Projects have Portuguese and English documentation. Passwords and infrastructure state stay out of Git. Future paid-cloud exercises should include expected costs and resource cleanup instructions.
+
+[About the history update](docs/history.md)

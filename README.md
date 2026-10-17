@@ -1,33 +1,37 @@
-# DevOps Portfolio — Rafael Santiago Silva
+# DevOps na prática
 
-[English](README.en.md) | Português
+[English](README.en.md) · Português
 
-Portfólio de engenharia DevOps com **um repositório por ferramenta ou domínio**. Este repositório funciona como índice, roteiro e diário; cada laboratório possui seu próprio código e documentação.
+Aqui reúno meus projetos de DevOps e os caminhos que estou explorando para entender melhor cada ferramenta. A ideia é começar com algo que funciona, provocar algumas falhas e descobrir como investigar e recuperar o ambiente.
 
-## Repositórios
+Cada laboratório tem seu próprio repositório, com código, instruções e um registro do que foi testado. Dá para acompanhar a sequência ou escolher um assunto e começar por ele.
 
-| Repositório | Conhecimentos | Estado |
-| --- | --- | --- |
-| [terraform-lab](https://github.com/tommmdl/terraform-lab) | Terraform, módulos, state, drift e ciclo de vida | Publicado; 22 checks locais e CI aprovados |
-| [github-actions-lab](https://github.com/tommmdl/github-actions-lab) | GitHub Actions, testes de integração e publicação no GHCR | Publicado; 23 testes e publicação no GHCR validados |
-| [docker-lab](https://github.com/tommmdl/docker-lab) | Docker, Compose, API, PostgreSQL e persistência | Publicado; 23 testes de integração passaram |
-| [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Jenkins, pipeline declarativo, artefatos e falhas | Publicado; builds SUCCESS e FAILURE validados |
-| [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Linux, Bash e diagnóstico | Publicado; script validado no WSL |
+## Por onde começar
 
-Os seis repositórios foram publicados na conta `tommmdl`.
-
-## Próximos repositórios planejados
-
-`ansible-lab`, `kubernetes-lab`, `argocd-lab`, `observability-lab` e `devsecops-lab`.
-
-Cada repositório terá problema, arquitetura quando útil, execução reproduzível, validação, troubleshooting, decisões e limpeza. Serão criados conforme houver entregas concretas.
-
-## Trilha de 100 dias
-
-| Dias | Foco |
+| Projeto | O que você vai encontrar |
 | --- | --- |
-| 01–10 | Linux, Bash, Git |
-| 11–20 | Redes, DNS, HTTP, TLS |
+| [Linux](https://github.com/tommmdl/linux-operations-lab) | Um script para olhar memória, disco e carga do sistema e praticar os primeiros diagnósticos. |
+| [Docker](https://github.com/tommmdl/docker-lab) | Uma aplicação de notas com PostgreSQL para explorar redes, volumes e o que acontece quando o banco para. |
+| [Jenkins](https://github.com/tommmdl/jenkins-lab) | Um primeiro pipeline, um build que passa e outro que falha de propósito para ajudar a entender os logs. |
+| [GitHub Actions](https://github.com/tommmdl/github-actions-lab) | A aplicação passando por testes antes de ter sua imagem publicada no GHCR. |
+| [Terraform](https://github.com/tommmdl/terraform-lab) | O mesmo ambiente descrito como código: criar, conferir mudanças, corrigir drift e remover os recursos. |
+
+Se você está chegando agora, eu começaria por Linux e Docker. Os projetos seguintes aproveitam a mesma aplicação para conectar os assuntos, sem precisar aprender um produto novo a cada etapa.
+
+## O que já foi colocado à prova
+
+Os repositórios guardam os comandos e resultados das verificações: builds de sucesso e falha no Jenkins, testes de integração com banco, publicação de imagem e o ciclo de vida da infraestrutura com Terraform. Cada projeto explica também os limites desses testes.
+
+Esses são ambientes de estudo. Os registros distinguem o que foi executado com ajuda do assistente do que ainda está pendente de exploração pelo autor.
+
+## Um roteiro para continuar
+
+A trilha de 100 dias serve como direção. O ritmo pode mudar conforme os exercícios ficam mais interessantes ou difíceis.
+
+| Dias | Assunto |
+| --- | --- |
+| 01–10 | Linux, Bash e Git |
+| 11–20 | Redes, DNS, HTTP e TLS |
 | 21–30 | Docker e Compose |
 | 31–40 | Jenkins e GitHub Actions |
 | 41–50 | Terraform |
@@ -35,12 +39,14 @@ Cada repositório terá problema, arquitetura quando útil, execução reproduz�
 | 61–70 | Kubernetes |
 | 71–80 | GitOps e segurança |
 | 81–90 | Observabilidade e SRE |
-| 91–100 | Integração, recuperação e apresentação |
+| 91–100 | Integração, recuperação e apresentação dos projetos |
 
-O roteiro é uma proposta, não uma declaração de experiência concluída. Jenkins já começa como laboratório paralelo por interesse do autor.
+Ansible, Kubernetes, GitOps, observabilidade e segurança são os próximos assuntos desta trilha. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
 
-## Evolução diária
+## Anotar faz parte
 
-Use o [modelo](templates/daily-log.md) e o [diário](journal/README.md). Registre trabalho real: implementação, investigação, correção ou documentação validada. Não há publicação diária automática configurada.
+O [diário](journal/README.md) reúne os avanços. O [modelo de registro](templates/daily-log.md) ajuda a guardar decisões, erros e próximos passos, além do código. Não há publicação diária automática.
 
-Documentação em português e inglês em cada repositório. Nunca versionar credenciais, relatórios privados ou estados de infraestrutura com segredos. Antes de usar cloud paga, documentar custos e remoção dos recursos.
+Os projetos têm documentação em português e inglês. Senhas e estados de infraestrutura ficam fora do Git. Quando houver exercícios em cloud paga, a documentação deve incluir custos e como remover os recursos.
+
+[Sobre a revisão do histórico](docs/history.md)
