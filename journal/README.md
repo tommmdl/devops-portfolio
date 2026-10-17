@@ -12,4 +12,6 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Ansible: dois alvos configurados pelo mesmo role; 16 testes locais e no CI verificaram idempotência, alteração limitada, check mode, handlers e correção de drift. [Resultados](https://github.com/tommmdl/ansible-lab/blob/main/docs/validation.md).
 
+- Kubernetes: a aplicação de notas entrou em um cluster kind dedicado; 24 testes locais e no CI cobriram réplicas, recuperação de Pods, PVC, escala e rollback. [Resultados](https://github.com/tommmdl/kubernetes-lab/blob/main/docs/validation.md).
+
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.

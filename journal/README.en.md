@@ -12,4 +12,6 @@ This is a place to keep track of changes, mistakes and things worth trying again
 
 - Ansible: two targets configured by one role; 16 local and CI checks covered idempotence, limited changes, check mode, handlers and drift repair. [Results](https://github.com/tommmdl/ansible-lab/blob/main/docs/validation.en.md).
 
+- Kubernetes: the notes app moved into a dedicated kind cluster; 24 local and CI checks covered replicas, Pod recovery, PVC, scaling and rollback. [Results](https://github.com/tommmdl/kubernetes-lab/blob/main/docs/validation.en.md).
+
 Use the [template](../templates/daily-log.en.md) for future entries. Describe what happened and what you understood, without adding entries just to keep a streak.
