@@ -14,4 +14,7 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Kubernetes: a aplicação de notas entrou em um cluster kind dedicado; 24 testes locais e no CI cobriram réplicas, recuperação de Pods, PVC, escala e rollback. [Resultados](https://github.com/tommmdl/kubernetes-lab/blob/main/docs/validation.md).
 
+
+- Monitoramento: Prometheus e Grafana acompanham a aplicação por sondas HTTP; 14 verificações locais cobriram coleta, consultas pelo painel, um alerta provocado por 404 e sua recuperação. [Resultados](https://github.com/tommmdl/monitoring-lab/blob/main/docs/validation.md).
+
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.
