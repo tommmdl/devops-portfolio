@@ -17,6 +17,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [Terraform](https://github.com/tommmdl/terraform-lab) | O mesmo ambiente descrito como código: criar, conferir mudanças, corrigir drift e remover os recursos. |
 | [Ansible](https://github.com/tommmdl/ansible-lab) | Um role configura dois alvos; depois entram repetição sem mudanças, templates, handlers e correção de drift. |
 | [Kubernetes](https://github.com/tommmdl/kubernetes-lab) | A aplicação ganha réplicas, um banco com volume e exercícios de recuperação, escala e rollback no cluster local. |
+| [Argo CD](https://github.com/tommmdl/argocd-lab) | A aplicação passa a seguir o Git, com testes de drift e correção automática pelo self-heal. |
 
 Se você está chegando agora, eu começaria por Linux e Docker. Vários projetos reaproveitam a aplicação de notas para conectar os assuntos. O Ansible usa dois alvos pequenos para explorar a configuração de servidores.
 
@@ -43,7 +44,7 @@ A trilha de 100 dias serve como direção. O ritmo pode mudar conforme os exerc�
 | 81–90 | Observabilidade e SRE |
 | 91–100 | Integração, recuperação e apresentação dos projetos |
 
-GitOps, observabilidade e segurança são os próximos assuntos desta trilha. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
+GitOps já faz parte dos projetos; observabilidade e segurança seguem como próximos assuntos desta trilha. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
 
 ## Anotar faz parte
 
