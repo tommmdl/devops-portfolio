@@ -20,4 +20,6 @@ This is a place to keep track of changes, mistakes and things worth trying again
 
 - Tracing: 19 local checks followed real Flask/Psycopg requests through Collector and Tempo, verified parent propagation, queried Grafana and correlated logs by trace ID. [Results](https://github.com/tommmdl/tracing-lab/blob/main/docs/validation.en.md).
 
+- Kubernetes configuration: six modules and 26 original local exercises inspired by the iximiuz outline; 39 checks covered environment, files, update semantics, immutable ConfigMaps and verified TLS. [Results](https://github.com/tommmdl/kubernetes-config-lab/blob/main/docs/validation.en.md).
+
 Use the [template](../templates/daily-log.en.md) for future entries. Describe what happened and what you understood, without adding entries just to keep a streak.

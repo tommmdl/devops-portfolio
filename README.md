@@ -17,6 +17,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [Terraform](https://github.com/tommmdl/terraform-lab) | O mesmo ambiente descrito como código: criar, conferir mudanças, corrigir drift e remover os recursos. |
 | [Ansible](https://github.com/tommmdl/ansible-lab) | Um role configura dois alvos; depois entram repetição sem mudanças, templates, handlers e correção de drift. |
 | [Kubernetes](https://github.com/tommmdl/kubernetes-lab) | A aplicação ganha réplicas, um banco com volume e exercícios de recuperação, escala e rollback no cluster local. |
+| [Configuração no Kubernetes](https://github.com/tommmdl/kubernetes-config-lab) | 26 exercícios com ConfigMaps, Secrets, TLS, volumes e Downward API, acompanhados de soluções e testes. |
 | [Argo CD](https://github.com/tommmdl/argocd-lab) | A aplicação passa a seguir o Git, com testes de drift e correção automática pelo self-heal. |
 | [Prometheus e Grafana](https://github.com/tommmdl/monitoring-lab) | Sondas acompanham a aplicação, um painel mostra os sinais e um exercício testa o alerta e a recuperação. |
 | [Loki e Grafana](https://github.com/tommmdl/logging-lab) | Os logs da API e do banco chegam ao Loki; um marcador ajuda a seguir a mensagem até o Grafana. |

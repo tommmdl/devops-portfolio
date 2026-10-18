@@ -21,4 +21,6 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Tracing: 19 verificações locais seguiram requisições reais Flask/Psycopg pelo Collector e Tempo, conferiram a propagação do pai, consultaram o Grafana e correlacionaram logs pelo trace ID. [Resultados](https://github.com/tommmdl/tracing-lab/blob/main/docs/validation.md).
 
+- Configuração no Kubernetes: seis blocos e 26 exercícios locais próprios inspirados nos temas do iximiuz; 39 verificações cobriram ambiente, arquivos, atualização, ConfigMap imutável e TLS validado. [Resultados](https://github.com/tommmdl/kubernetes-config-lab/blob/main/docs/validation.md).
+
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.

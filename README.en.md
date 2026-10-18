@@ -17,6 +17,7 @@ Each lab has its own repository with code, instructions and a record of what was
 | [Terraform](https://github.com/tommmdl/terraform-lab) | Describing the same environment as code: creating it, reviewing changes, fixing drift and cleaning up. |
 | [Ansible](https://github.com/tommmdl/ansible-lab) | One role configures two targets, followed by unchanged reruns, templates, handlers and drift repair. |
 | [Kubernetes](https://github.com/tommmdl/kubernetes-lab) | The app gains replicas, a database volume and local-cluster exercises in recovery, scaling and rollback. |
+| [Kubernetes configuration](https://github.com/tommmdl/kubernetes-config-lab) | 26 exercises with ConfigMaps, Secrets, TLS, volumes and Downward API, with solutions and tests. |
 | [Argo CD](https://github.com/tommmdl/argocd-lab) | The application follows Git, with drift and automatic self-heal exercises. |
 | [Prometheus and Grafana](https://github.com/tommmdl/monitoring-lab) | Probes watch the app, a dashboard shows the signals and a drill tests alerting and recovery. |
 | [Loki and Grafana](https://github.com/tommmdl/logging-lab) | API and database logs reach Loki; a marker follows a message all the way to Grafana. |
