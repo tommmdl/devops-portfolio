@@ -19,4 +19,6 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Logging: Alloy coleta os logs da API e do PostgreSQL pela API do Kubernetes; 16 verificações locais cobriram consultas no Loki e no Grafana, persistência após trocar o Pod do Loki e permissões restritas do coletor. [Resultados](https://github.com/tommmdl/logging-lab/blob/main/docs/validation.md).
 
+- Tracing: 19 verificações locais seguiram requisições reais Flask/Psycopg pelo Collector e Tempo, conferiram a propagação do pai, consultaram o Grafana e correlacionaram logs pelo trace ID. [Resultados](https://github.com/tommmdl/tracing-lab/blob/main/docs/validation.md).
+
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.

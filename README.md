@@ -20,6 +20,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [Argo CD](https://github.com/tommmdl/argocd-lab) | A aplicação passa a seguir o Git, com testes de drift e correção automática pelo self-heal. |
 | [Prometheus e Grafana](https://github.com/tommmdl/monitoring-lab) | Sondas acompanham a aplicação, um painel mostra os sinais e um exercício testa o alerta e a recuperação. |
 | [Loki e Grafana](https://github.com/tommmdl/logging-lab) | Os logs da API e do banco chegam ao Loki; um marcador ajuda a seguir a mensagem até o Grafana. |
+| [OpenTelemetry e Tempo](https://github.com/tommmdl/tracing-lab) | Uma requisição ganha spans da API e do banco, com o mesmo trace ID disponível nos logs. |
 
 Se você está chegando agora, eu começaria por Linux e Docker. Vários projetos reaproveitam a aplicação de notas para conectar os assuntos. O Ansible usa dois alvos pequenos para explorar a configuração de servidores.
 
@@ -46,7 +47,7 @@ A trilha de 100 dias serve como direção. O ritmo pode mudar conforme os exerc�
 | 81–90 | Observabilidade e SRE |
 | 91–100 | Integração, recuperação e apresentação dos projetos |
 
-GitOps, monitoramento e centralização de logs já fazem parte da trilha. Métricas internas, traces e segurança são caminhos para continuar. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
+GitOps, métricas de disponibilidade, logs e traces já fazem parte da trilha. Métricas internas mais completas, segurança e recuperação são caminhos para continuar. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
 
 ## Anotar faz parte
 

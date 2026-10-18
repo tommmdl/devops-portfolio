@@ -18,4 +18,6 @@ This is a place to keep track of changes, mistakes and things worth trying again
 
 - Logging: Alloy collects API and PostgreSQL logs through the Kubernetes API; 16 local checks covered Loki and Grafana queries, persistence after replacing the Loki Pod and restricted collector permissions. [Results](https://github.com/tommmdl/logging-lab/blob/main/docs/validation.en.md).
 
+- Tracing: 19 local checks followed real Flask/Psycopg requests through Collector and Tempo, verified parent propagation, queried Grafana and correlated logs by trace ID. [Results](https://github.com/tommmdl/tracing-lab/blob/main/docs/validation.en.md).
+
 Use the [template](../templates/daily-log.en.md) for future entries. Describe what happened and what you understood, without adding entries just to keep a streak.
