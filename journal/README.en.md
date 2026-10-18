@@ -22,4 +22,6 @@ This is a place to keep track of changes, mistakes and things worth trying again
 
 - Kubernetes configuration: six modules and 26 original local exercises inspired by the iximiuz outline; 39 checks covered environment, files, update semantics, immutable ConfigMaps and verified TLS. [Results](https://github.com/tommmdl/kubernetes-config-lab/blob/main/docs/validation.en.md).
 
+- Image security: 13 local tests exercised policy decisions and actual Trivy Dockerfile scans. Real image gates blocked 48 HIGH occurrences in the basic API and 95 HIGH / 4 CRITICAL in PostgreSQL. [Results](https://github.com/tommmdl/security-lab/blob/main/docs/validation.en.md).
+
 Use the [template](../templates/daily-log.en.md) for future entries. Describe what happened and what you understood, without adding entries just to keep a streak.

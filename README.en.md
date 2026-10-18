@@ -22,6 +22,7 @@ Each lab has its own repository with code, instructions and a record of what was
 | [Prometheus and Grafana](https://github.com/tommmdl/monitoring-lab) | Probes watch the app, a dashboard shows the signals and a drill tests alerting and recovery. |
 | [Loki and Grafana](https://github.com/tommmdl/logging-lab) | API and database logs reach Loki; a marker follows a message all the way to Grafana. |
 | [OpenTelemetry and Tempo](https://github.com/tommmdl/tracing-lab) | A request gains API and database spans, with the same trace ID available in logs. |
+| [Trivy and image security](https://github.com/tommmdl/security-lab) | Real scan reports and a gate that blocks images with severe findings while keeping the reasons visible in CI. |
 
 If you are new to these topics, I would start with Linux and Docker. Several projects reuse the notes app to connect the topics. Ansible uses two small targets to explore server configuration.
 
@@ -48,7 +49,7 @@ The 100-day roadmap gives the work some direction. The pace can change as exerci
 | 81–90 | Observability and SRE |
 | 91–100 | Integration, recovery and presenting the projects |
 
-GitOps, availability metrics, logs and traces are now part of this route. Richer internal metrics, security and recovery are paths to explore next. Projects join the index as they are developed; the roadmap is not a list of completed work.
+GitOps, availability metrics, logs, traces and a first image security gate are now part of this route. Richer internal metrics, finding triage/remediation and recovery are paths to explore next. Projects join the index as they are developed; the roadmap is not a list of completed work.
 
 ## Keeping notes
 
