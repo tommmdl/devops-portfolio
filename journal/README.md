@@ -17,4 +17,6 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Monitoramento: Prometheus e Grafana acompanham a aplicação por sondas HTTP; 14 verificações locais cobriram coleta, consultas pelo painel, um alerta provocado por 404 e sua recuperação. [Resultados](https://github.com/tommmdl/monitoring-lab/blob/main/docs/validation.md).
 
+- Logging: Alloy coleta os logs da API e do PostgreSQL pela API do Kubernetes; 16 verificações locais cobriram consultas no Loki e no Grafana, persistência após trocar o Pod do Loki e permissões restritas do coletor. [Resultados](https://github.com/tommmdl/logging-lab/blob/main/docs/validation.md).
+
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.
