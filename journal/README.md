@@ -23,6 +23,6 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 
 - Configuração no Kubernetes: seis blocos e 26 exercícios locais próprios inspirados nos temas do iximiuz; 39 verificações cobriram ambiente, arquivos, atualização, ConfigMap imutável e TLS validado. [Resultados](https://github.com/tommmdl/kubernetes-config-lab/blob/main/docs/validation.md).
 
-- Segurança de imagens: 13 testes locais cobriram decisões da política e scans reais de Dockerfiles com Trivy. Os gates das imagens bloquearam 48 ocorrências HIGH na API básica e 95 HIGH / 4 CRITICAL no PostgreSQL. [Resultados](https://github.com/tommmdl/security-lab/blob/main/docs/validation.md).
+- Segurança de imagens: 15 testes locais cobriram decisões da política e scans reais de Dockerfiles com Trivy. Os gates das imagens bloquearam 48 ocorrências HIGH na API básica e 95 HIGH / 4 CRITICAL no PostgreSQL. [Resultados](https://github.com/tommmdl/security-lab/blob/main/docs/validation.md).
 
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.
