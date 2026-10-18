@@ -26,3 +26,5 @@ Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra 
 - Segurança de imagens: 15 testes locais cobriram decisões da política e scans reais de Dockerfiles com Trivy. Os gates das imagens bloquearam 48 ocorrências HIGH na API básica e 95 HIGH / 4 CRITICAL no PostgreSQL. [Resultados](https://github.com/tommmdl/security-lab/blob/main/docs/validation.md).
 
 Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o que aconteceu e o que você entendeu, sem preencher dias só para manter uma sequência.
+
+- Correções nas imagens: a API passou de 173 para 164 achados e o PostgreSQL de 472 para 412. Nenhum achado restante tem correção publicada nessa fotografia do Trivy; o gate ainda bloqueia 44 HIGH na API e 71 HIGH / 3 CRITICAL no banco. As mudanças chegaram ao Compose e ao Argo CD com testes de integração, restauração e tracing. [Relatórios completos de antes e depois](https://github.com/tommmdl/security-lab/blob/main/docs/remediation.md).

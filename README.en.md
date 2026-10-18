@@ -49,7 +49,7 @@ The 100-day roadmap gives the work some direction. The pace can change as exerci
 | 81–90 | Observability and SRE |
 | 91–100 | Integration, recovery and presenting the projects |
 
-GitOps, availability metrics, logs, traces and a first image security gate are now part of this route. Richer internal metrics, finding triage/remediation and recovery are paths to explore next. Projects join the index as they are developed; the roadmap is not a list of completed work.
+GitOps, availability metrics, logs, traces and a first image security gate are now part of this route. Richer internal metrics, triage of the remaining findings and recovery are paths to explore next. Projects join the index as they are developed; the roadmap is not a list of completed work.
 
 ## Keeping notes
 

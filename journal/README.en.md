@@ -25,3 +25,5 @@ This is a place to keep track of changes, mistakes and things worth trying again
 - Image security: 15 local tests exercised policy decisions and actual Trivy Dockerfile scans. Real image gates blocked 48 HIGH occurrences in the basic API and 95 HIGH / 4 CRITICAL in PostgreSQL. [Results](https://github.com/tommmdl/security-lab/blob/main/docs/validation.en.md).
 
 Use the [template](../templates/daily-log.en.md) for future entries. Describe what happened and what you understood, without adding entries just to keep a streak.
+
+- Image remediation: the API dropped from 173 to 164 findings and PostgreSQL from 472 to 412. No remaining finding has a published fix in this Trivy snapshot; the gate still blocks 44 HIGH in the API and 71 HIGH / 3 CRITICAL in the database. The changes reached Compose and Argo CD with integration, restore and tracing checks. [Complete before/after reports](https://github.com/tommmdl/security-lab/blob/main/docs/remediation.en.md).

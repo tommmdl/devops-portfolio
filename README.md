@@ -49,7 +49,7 @@ A trilha de 100 dias serve como direção. O ritmo pode mudar conforme os exerc�
 | 81–90 | Observabilidade e SRE |
 | 91–100 | Integração, recuperação e apresentação dos projetos |
 
-GitOps, métricas de disponibilidade, logs, traces e um primeiro gate de segurança de imagens já fazem parte da trilha. Métricas internas mais completas, triagem e correção dos achados e recuperação são caminhos para continuar. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
+GitOps, métricas de disponibilidade, logs, traces e um primeiro gate de segurança de imagens já fazem parte da trilha. Métricas internas mais completas, triagem dos achados restantes e recuperação são caminhos para continuar. Eles entram aqui conforme os projetos forem desenvolvidos; o roteiro não representa trabalho já concluído.
 
 ## Anotar faz parte
 
