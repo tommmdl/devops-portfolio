@@ -47,3 +47,5 @@ Both basic and OpenTelemetry variants recorded zero findings with full inventory
 ### Alpine APIs adopted with actual image rollback
 
 Main Docker/basic Kubernetes now use the released basic Alpine digest; GitOps tracing uses the released instrumented digest. We restored private backups separately and proved notes written after cutover survived Debian image rollback and return. PostgreSQL containers/PVCs and schema remain unchanged. Active and retained recovery images have separate scan targets. [Procedure and evidence](https://github.com/tommmdl/security-lab/blob/main/docs/api-adoption.en.md).
+
+- Alerting: 23 local checks followed real API and database failures through Alertmanager to an HTTP receiver, covering resolution, grouping, inhibition, silences and persistence. Application and GitOps state were restored afterward. [Results in English and Portuguese](https://github.com/tommmdl/alerting-lab/blob/main/docs/validation.en.md).

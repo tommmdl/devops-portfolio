@@ -22,6 +22,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [Prometheus e Grafana](https://github.com/tommmdl/monitoring-lab) | Sondas acompanham a aplicação, um painel mostra os sinais e um exercício testa o alerta e a recuperação. |
 | [Loki e Grafana](https://github.com/tommmdl/logging-lab) | Os logs da API e do banco chegam ao Loki; um marcador ajuda a seguir a mensagem até o Grafana. |
 | [OpenTelemetry e Tempo](https://github.com/tommmdl/tracing-lab) | Uma requisição ganha spans da API e do banco, com o mesmo trace ID disponível nos logs. |
+| [Alertas com Prometheus e Alertmanager](https://github.com/tommmdl/alerting-lab) | Falhas reais da API e do banco viram notificações; entram agrupamento, inibição, silêncios e recuperação. |
 | [Trivy e segurança de imagens](https://github.com/tommmdl/security-lab) | Relatórios reais e um gate que bloqueia imagens com achados graves, mantendo os motivos visíveis no CI. |
 
 Se você está chegando agora, eu começaria por Linux e Docker. Vários projetos reaproveitam a aplicação de notas para conectar os assuntos. O Ansible usa dois alvos pequenos para explorar a configuração de servidores.

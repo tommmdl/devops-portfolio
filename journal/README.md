@@ -48,3 +48,5 @@ As variantes básica e OpenTelemetry ficaram com zero achados e inventário comp
 ### APIs Alpine adotadas com rollback real de imagem
 
 Docker/Kubernetes básico passam ao digest Alpine básico publicado; o tracing GitOps usa o digest instrumentado. Restauramos backups privados em separado e comprovamos que notas escritas após a troca sobreviveram ao retorno Debian e à volta ao Alpine. Containers/PVCs e schema do PostgreSQL continuam iguais. Imagens ativas e de recuperação têm alvos de scan separados. [Procedimento e evidências](https://github.com/tommmdl/security-lab/blob/main/docs/api-adoption.md).
+
+- Alertas: 23 verificações locais seguiram falhas reais da API e do banco até o Alertmanager e o receptor HTTP, com resolução, agrupamento, inibição, silêncios e persistência. A aplicação e o GitOps foram restaurados ao final. [Resultados em português e inglês](https://github.com/tommmdl/alerting-lab/blob/main/docs/validation.md).

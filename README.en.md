@@ -22,6 +22,7 @@ Each lab has its own repository with code, instructions and a record of what was
 | [Prometheus and Grafana](https://github.com/tommmdl/monitoring-lab) | Probes watch the app, a dashboard shows the signals and a drill tests alerting and recovery. |
 | [Loki and Grafana](https://github.com/tommmdl/logging-lab) | API and database logs reach Loki; a marker follows a message all the way to Grafana. |
 | [OpenTelemetry and Tempo](https://github.com/tommmdl/tracing-lab) | A request gains API and database spans, with the same trace ID available in logs. |
+| [Prometheus and Alertmanager alerts](https://github.com/tommmdl/alerting-lab) | Real API and database failures become notifications, with grouping, inhibition, silences and recovery. |
 | [Trivy and image security](https://github.com/tommmdl/security-lab) | Real scan reports and a gate that blocks images with severe findings while keeping the reasons visible in CI. |
 
 If you are new to these topics, I would start with Linux and Docker. Several projects reuse the notes app to connect the topics. Ansible uses two small targets to explore server configuration.
