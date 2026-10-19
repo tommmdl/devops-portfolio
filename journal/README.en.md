@@ -43,3 +43,7 @@ The 44 HIGH occurrences map to eight operating-system CVEs. Stable package candi
 ### Testing Alpine for the API
 
 Both basic and OpenTelemetry variants recorded zero findings with full inventory, after removing unused installer tooling and updating zlib. Each passed 23 API and 20 database-security checks; tracing was verified through real Collector/Tempo and through Grafana/Loki in a separate Kubernetes workload. The main Debian API and its 44 HIGH findings are preserved. [Experiment and evidence](https://github.com/tommmdl/security-lab/blob/main/docs/api-alpine.en.md).
+
+### Alpine APIs adopted with actual image rollback
+
+Main Docker/basic Kubernetes now use the released basic Alpine digest; GitOps tracing uses the released instrumented digest. We restored private backups separately and proved notes written after cutover survived Debian image rollback and return. PostgreSQL containers/PVCs and schema remain unchanged. Active and retained recovery images have separate scan targets. [Procedure and evidence](https://github.com/tommmdl/security-lab/blob/main/docs/api-adoption.en.md).

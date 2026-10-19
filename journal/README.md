@@ -44,3 +44,7 @@ Os 44 HIGH representam oito CVEs do sistema operacional. Os candidatos do reposi
 ### Testando Alpine para a API
 
 As variantes básica e OpenTelemetry ficaram com zero achados e inventário completo, depois de retirar ferramentas de instalação sem uso e atualizar a zlib. Cada uma passou em 23 testes da API e 20 de segurança do banco; conferimos tracing real pelo Collector/Tempo e pelo Grafana/Loki em outro workload Kubernetes. A API Debian principal e seus 44 HIGH foram preservados. [Ensaio e evidências](https://github.com/tommmdl/security-lab/blob/main/docs/api-alpine.md).
+
+### APIs Alpine adotadas com rollback real de imagem
+
+Docker/Kubernetes básico passam ao digest Alpine básico publicado; o tracing GitOps usa o digest instrumentado. Restauramos backups privados em separado e comprovamos que notas escritas após a troca sobreviveram ao retorno Debian e à volta ao Alpine. Containers/PVCs e schema do PostgreSQL continuam iguais. Imagens ativas e de recuperação têm alvos de scan separados. [Procedimento e evidências](https://github.com/tommmdl/security-lab/blob/main/docs/api-adoption.md).
