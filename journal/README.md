@@ -36,3 +36,7 @@ Para as próximas entradas, use o [modelo](../templates/daily-log.md). Conte o q
 ### PostgreSQL Alpine adotado com rollback real
 
 Docker e Kubernetes agora usam o digest Alpine testado. Pausamos as escritas, restauramos backups lógicos em volumes novos e guardamos os originais Debian. Uma nota criada após a troca sobreviveu ao retorno real da API por outro volume/PVC Debian restaurado; depois os dois labs voltaram ao Alpine. Conferimos self-heal, logs e traces. Os achados completos continuam visíveis, incluindo a imagem afetada de recuperação. [Procedimento e evidências nos dois idiomas](https://github.com/tommmdl/security-lab/blob/main/docs/postgres-adoption.md).
+
+### Olhando de perto os HIGH da API
+
+Os 44 HIGH representam oito CVEs do sistema operacional. Os candidatos do repositório estável continuam iguais às versões instaladas. Conferimos privilégios e componentes presentes e limitamos os recursos da API no Compose e no Kubernetes. Os achados completos continuam visíveis e bloqueando; mitigação não foi apresentada como patch de binário. [Análise nos dois idiomas](https://github.com/tommmdl/security-lab/blob/main/docs/api-high-review.md).

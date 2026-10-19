@@ -35,3 +35,7 @@ Use the [template](../templates/daily-log.en.md) for future entries. Describe wh
 ### PostgreSQL Alpine adopted with a real rollback
 
 Docker and Kubernetes now use the tested Alpine digest. We paused writes, restored logical backups into fresh volumes and retained the Debian originals. A post-cutover note survived an actual API rollback through another restored Debian volume/PVC; then both labs returned to Alpine. Argo self-heal, logs and traces were checked. Full findings remain visible, including the affected recovery image. [Procedure and bilingual evidence](https://github.com/tommmdl/security-lab/blob/main/docs/postgres-adoption.en.md).
+
+### Looking closer at the API HIGH findings
+
+The 44 HIGH occurrences map to eight operating-system CVEs. Stable package candidates still match installed versions. We tested privilege boundaries and component presence, then bounded API resources in Compose and Kubernetes. Full findings remain visible and blocking; mitigation is not reported as a binary patch. [Bilingual review](https://github.com/tommmdl/security-lab/blob/main/docs/api-high-review.en.md).
