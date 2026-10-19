@@ -24,6 +24,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [OpenTelemetry e Tempo](https://github.com/tommmdl/tracing-lab) | Uma requisição ganha spans da API e do banco, com o mesmo trace ID disponível nos logs. |
 | [Alertas com Prometheus e Alertmanager](https://github.com/tommmdl/alerting-lab) | Falhas reais da API e do banco viram notificações; entram agrupamento, inibição, silêncios e recuperação. |
 | [Backup e restauração com Velero](https://github.com/tommmdl/backup-restore-lab) | Um dump consistente do PostgreSQL vai para S3 e volta em outro namespace, com dados e aplicação conferidos. |
+| [Recuperação entre clusters](https://github.com/tommmdl/disaster-recovery-lab) | Outro cluster recupera a aplicação e o PostgreSQL pelo S3 enquanto a origem fica parada e isolada do destino. |
 | [Trivy e segurança de imagens](https://github.com/tommmdl/security-lab) | Relatórios reais e um gate que bloqueia imagens com achados graves, mantendo os motivos visíveis no CI. |
 
 Se você está chegando agora, eu começaria por Linux e Docker. Vários projetos reaproveitam a aplicação de notas para conectar os assuntos. O Ansible usa dois alvos pequenos para explorar a configuração de servidores.
