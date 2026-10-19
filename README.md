@@ -25,6 +25,7 @@ Cada laboratório tem seu próprio repositório, com código, instruções e um 
 | [Alertas com Prometheus e Alertmanager](https://github.com/tommmdl/alerting-lab) | Falhas reais da API e do banco viram notificações; entram agrupamento, inibição, silêncios e recuperação. |
 | [Backup e restauração com Velero](https://github.com/tommmdl/backup-restore-lab) | Um dump consistente do PostgreSQL vai para S3 e volta em outro namespace, com dados e aplicação conferidos. |
 | [Recuperação entre clusters](https://github.com/tommmdl/disaster-recovery-lab) | Outro cluster recupera a aplicação e o PostgreSQL pelo S3 enquanto a origem fica parada e isolada do destino. |
+| [Failover e failback](https://github.com/tommmdl/failover-lab) | A aplicação vai para o outro cluster e volta com as novas notas; o PostgreSQL replica de forma síncrona e a promoção exige bloquear o escritor anterior. |
 | [Trivy e segurança de imagens](https://github.com/tommmdl/security-lab) | Relatórios reais e um gate que bloqueia imagens com achados graves, mantendo os motivos visíveis no CI. |
 
 Se você está chegando agora, eu começaria por Linux e Docker. Vários projetos reaproveitam a aplicação de notas para conectar os assuntos. O Ansible usa dois alvos pequenos para explorar a configuração de servidores.

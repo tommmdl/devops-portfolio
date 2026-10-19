@@ -25,6 +25,7 @@ Each lab has its own repository with code, instructions and a record of what was
 | [Prometheus and Alertmanager alerts](https://github.com/tommmdl/alerting-lab) | Real API and database failures become notifications, with grouping, inhibition, silences and recovery. |
 | [Velero backup and recovery](https://github.com/tommmdl/backup-restore-lab) | A consistent PostgreSQL dump goes to S3 and returns in a new namespace, with application and data checks. |
 | [Cross-cluster disaster recovery](https://github.com/tommmdl/disaster-recovery-lab) | A second cluster recovers the application and PostgreSQL from S3 while the source is stopped and fenced from it. |
+| [Failover and failback](https://github.com/tommmdl/failover-lab) | The application moves to the other cluster and returns with new notes; PostgreSQL replicates synchronously and promotion requires fencing the previous writer. |
 | [Trivy and image security](https://github.com/tommmdl/security-lab) | Real scan reports and a gate that blocks images with severe findings while keeping the reasons visible in CI. |
 
 If you are new to these topics, I would start with Linux and Docker. Several projects reuse the notes app to connect the topics. Ansible uses two small targets to explore server configuration.
