@@ -39,3 +39,7 @@ Docker and Kubernetes now use the tested Alpine digest. We paused writes, restor
 ### Looking closer at the API HIGH findings
 
 The 44 HIGH occurrences map to eight operating-system CVEs. Stable package candidates still match installed versions. We tested privilege boundaries and component presence, then bounded API resources in Compose and Kubernetes. Full findings remain visible and blocking; mitigation is not reported as a binary patch. [Bilingual review](https://github.com/tommmdl/security-lab/blob/main/docs/api-high-review.en.md).
+
+### Testing Alpine for the API
+
+Both basic and OpenTelemetry variants recorded zero findings with full inventory, after removing unused installer tooling and updating zlib. Each passed 23 API and 20 database-security checks; tracing was verified through real Collector/Tempo and through Grafana/Loki in a separate Kubernetes workload. The main Debian API and its 44 HIGH findings are preserved. [Experiment and evidence](https://github.com/tommmdl/security-lab/blob/main/docs/api-alpine.en.md).

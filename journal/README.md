@@ -40,3 +40,7 @@ Docker e Kubernetes agora usam o digest Alpine testado. Pausamos as escritas, re
 ### Olhando de perto os HIGH da API
 
 Os 44 HIGH representam oito CVEs do sistema operacional. Os candidatos do repositório estável continuam iguais às versões instaladas. Conferimos privilégios e componentes presentes e limitamos os recursos da API no Compose e no Kubernetes. Os achados completos continuam visíveis e bloqueando; mitigação não foi apresentada como patch de binário. [Análise nos dois idiomas](https://github.com/tommmdl/security-lab/blob/main/docs/api-high-review.md).
+
+### Testando Alpine para a API
+
+As variantes básica e OpenTelemetry ficaram com zero achados e inventário completo, depois de retirar ferramentas de instalação sem uso e atualizar a zlib. Cada uma passou em 23 testes da API e 20 de segurança do banco; conferimos tracing real pelo Collector/Tempo e pelo Grafana/Loki em outro workload Kubernetes. A API Debian principal e seus 44 HIGH foram preservados. [Ensaio e evidências](https://github.com/tommmdl/security-lab/blob/main/docs/api-alpine.md).
