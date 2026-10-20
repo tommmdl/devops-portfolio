@@ -66,3 +66,9 @@ Na comparação local do chaos-lab, a remoção com prazo passou de sete falhas 
 ### Voltando ao timeout do CI
 
 O timeout de seis segundos começou durante a drenagem, antes do SIGTERM observado; o registro antigo não revela se a espera era TCP ou HTTP. Acrescentamos fases de conexão e testamos um limite TCP de 500 ms apenas para GET. Com SYN descartado de verdade, couberam três tentativas em cerca de 1,5 segundo de espera de conexão, contra duas em quase quatro segundos. Passaram 90 verificações locais e 90 no CI, mantendo dados e os relatórios anteriores. O timeout não se repetiu; seis erros diretos nos cortes abruptos do CI foram registrados como resets ou recusas. Não houve evidência de redução adicional na taxa de falhas da remoção com prazo, e a causa histórica continua aberta. [Investigação e resultados nos dois idiomas](https://github.com/tommmdl/chaos-lab/blob/main/docs/connection-timeout.md).
+
+### 20/10/2026 — Uma entrada mais clara para os projetos
+
+O portfólio agora conecta os 18 labs por um mapa de arquitetura, uma ordem de estudo e resultados selecionados com links diretos para as evidências. [Comece pelo guia](../README.md) ou abra os [resultados](../docs/results.md). As entradas anteriores descrevem cada etapa na época em que foi registrada.
+
+A investigação mais recente de caos passou em 146 verificações no CI e reproduziu cinco timeouts na conexão TCP. Quatro tiveram pacotes associados a Pods em encerramento; o quinto começou antes do experimento e continua sem backend identificado. Erros HTTP, controles e a lacuna da observação local ficam no [relato bilíngue](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.md). Esta atualização organiza os registros; não declara um novo teste dos ambientes.

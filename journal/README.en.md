@@ -65,3 +65,9 @@ In the chaos-lab local comparison, graceful removal went from seven failures in 
 ### Revisiting the CI timeout
 
 The six-second timeout started during draining, before observed SIGTERM; the old record cannot distinguish TCP from HTTP waiting. We added connection phases and tested a 500 ms TCP limit for GET only. With actual SYN drops, three attempts fit in about 1.5 seconds of connection waiting, versus two in almost four seconds. All 90 checks passed locally and in CI while preserving data and earlier reports. The timeout did not recur; six direct CI errors during abrupt removals were classified as resets or refusals. No additional graceful-removal failure-rate reduction was demonstrated, and the historical cause remains open. [Bilingual investigation and results](https://github.com/tommmdl/chaos-lab/blob/main/docs/connection-timeout.en.md).
+
+### 2026-10-20 — A clearer starting point
+
+The portfolio now connects all 18 labs through an architecture map, a study route and selected results with direct evidence links. [Start with the guide](../README.en.md) or open the [results](../docs/results.en.md). Older entries describe their own stage of the work.
+
+The latest chaos investigation passed 146 CI checks and reproduced five TCP connect timeouts. Four had packet matches to departing Pods; the fifth began before the experiment and has no identified backend. Original HTTP errors, controls and the local observation gap remain in the [bilingual account](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.en.md). This portfolio update reorganizes those records; it does not report a new runtime test.

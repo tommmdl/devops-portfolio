@@ -1,0 +1,77 @@
+# Resultados que ajudam a entender o trabalho
+
+[English](results.en.md) · [Início](../README.md) · [Arquitetura](architecture.md) · [Ordem de estudo](study-guide.md)
+
+Seleção revisada em **20/10/2026**. Escolhi estes registros porque mostram uma decisão, uma falha ou uma recuperação que dá para inspecionar. Os números pertencem às execuções citadas; não são um placar acumulado nem uma promessa sobre a próxima execução.
+
+## 1. Publicar o que foi testado
+
+O GitHub Actions lab registra uma execução com **23 testes de integração** e verifica a identidade da imagem ao transferi-la entre jobs, publicá-la e baixá-la do GHCR. Também mantém a execução que falhou e impediu a publicação.
+
+[Relato e proveniência](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.md) · [CI citado](https://github.com/tommmdl/github-actions-lab/actions/runs/39073184363)
+
+Isso demonstra aquele caminho de entrega. O workflow usa uma revisão fixada da aplicação, e o gate de vulnerabilidades é separado. Publicação bem-sucedida não equivale a aprovação de segurança.
+
+## 2. Ver o self-heal acontecer
+
+No ensaio local do Argo CD, a aplicação permaneceu com três réplicas por 30 segundos enquanto self-heal estava desligado. Ao ligá-lo, voltou a duas e ficou Synced/Healthy. Um segundo desvio foi corrigido, preservando o PVC e a nota do teste.
+
+[Relatório de self-heal](https://github.com/tommmdl/argocd-lab/blob/main/evidence/notes-self-heal.json) · [Procedimento](https://github.com/tommmdl/argocd-lab#readme)
+
+O registro inclui revisão e horário. Esse teste de notas foi executado localmente; a pipeline do repositório valida os manifests, sem executar esse ensaio de self-heal.
+
+## 3. Seguir uma requisição até o SQL e os logs
+
+O tracing-lab registra **19 verificações locais**, com propagação de um `traceparent` conhecido, relação entre spans Flask/Psycopg e consulta no Tempo/Grafana. O mesmo trace ID permite localizar logs no Loki. Há também repetição registrada no CI.
+
+[Validação](https://github.com/tommmdl/tracing-lab/blob/main/docs/validation.md) · [Resumo dos spans](https://github.com/tommmdl/tracing-lab/blob/main/evidence/trace-summary.json) · [CI citado](https://github.com/tommmdl/tracing-lab/actions/runs/39128753855)
+
+O span SQL observa o cliente de banco; não mede por dentro o processo PostgreSQL. A comparação com métricas e logs ajuda a explicar o alcance de cada sinal.
+
+## 4. Trocar imagens com recuperação exercitada
+
+A adoção das APIs Alpine básica e OpenTelemetry incluiu backup e rollback real de imagem, preservando notas criadas depois da troca. Para o PostgreSQL, a migração foi lógica: dump, restauração em volume novo e teste de retorno, com os volumes originais retidos.
+
+[Adoção da API](https://github.com/tommmdl/security-lab/blob/main/docs/api-adoption.md) · [Adoção do PostgreSQL](https://github.com/tommmdl/security-lab/blob/main/docs/postgres-adoption.md) · [Scans e política](https://github.com/tommmdl/security-lab#readme)
+
+Os achados das imagens antigas de recuperação continuam publicados e podem manter o resultado geral do gate bloqueado. Um scan sem achados descreve aquele digest e a base de vulnerabilidades daquela execução.
+
+## 5. Recuperar o backup em outro lugar
+
+O backup-restore-lab passou em **25 verificações locais e no CI** ao recuperar recursos e um dump em outro namespace. O disaster-recovery-lab passou em **32 locais e no CI**, restaurando em outro cluster enquanto a origem do exercício estava parada e sua API bloqueada a partir do destino. Os testes distinguem dados do backup de uma escrita posterior.
+
+[Backup: validação](https://github.com/tommmdl/backup-restore-lab/blob/main/docs/validation.md) · [CI de backup](https://github.com/tommmdl/backup-restore-lab/actions/runs/39292524227) · [DR: validação](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.md) · [CI de DR](https://github.com/tommmdl/disaster-recovery-lab/actions/runs/39295149820)
+
+Os restores terminaram com zero erros e dois avisos preservados. Os clusters e o S3 local compartilham o host. A origem isolada foi interrompida, sem destruir a aplicação principal ou simular perda da máquina.
+
+## 6. Fazer failover e trazer as novas escritas de volta
+
+O failover-lab passou em **48 verificações locais e no CI**. A troca exige bloquear o escritor anterior; o failback traz as notas criadas no destino. O teste também interrompe o controlador e reconcilia uma escrita que recebeu erro HTTP sem repeti-la automaticamente.
+
+[Validação e falhas anteriores](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.md) · [Relatório do runner](https://github.com/tommmdl/failover-lab/blob/main/evidence/ci-verification.json) · [CI citado](https://github.com/tommmdl/failover-lab/actions/runs/39310992536)
+
+É um procedimento controlado com acesso aos dois clusters. Não demonstra eleição automática ou RPO zero geral. A suposição incorreta de que a sequência de IDs deveria ficar idêntica também permanece documentada.
+
+## 7. Corrigir uma checagem que aprovava cedo demais
+
+A checagem de troca de Pod misturava uma leitura de prontidão com outra de UIDs. Um controle com remoção real reproduziu o falso positivo. A correção usa uma observação coerente e confirma a saída do alvo do Chaos Mesh. Foram **116 verificações locais** e **123 em cada um de dois CIs** dessa etapa.
+
+[Investigação](https://github.com/tommmdl/chaos-lab/blob/main/docs/pod-replacement.md) · [Controle real](https://github.com/tommmdl/chaos-lab/blob/main/evidence/pod-replacement-local-regression.json) · [CI dessa correção](https://github.com/tommmdl/chaos-lab/actions/runs/39417441792)
+
+Os relatórios anteriores reprovados continuam disponíveis. Essa correção não eliminou os erros de conexão que motivaram a etapa seguinte.
+
+## 8. Reproduzir os seis segundos com captura na matriz
+
+O CI seguinte passou em **146 verificações** e reproduziu **cinco timeouts no estabelecimento TCP**, com SYNs retransmitidos e sem SYN-ACK. Quatro tiveram correspondência de pacotes para Pods em encerramento; o quinto começou antes da aplicação do experimento e continua sem backend identificado.
+
+[Investigação completa](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.md) · [Casos e pacotes](https://github.com/tommmdl/chaos-lab/blob/main/evidence/matrix-timeouts-ci-39421860854-cases.json) · [Resumo do CI](https://github.com/tommmdl/chaos-lab/blob/main/evidence/matrix-timeouts-ci-39421860854-summary.json) · [CI citado](https://github.com/tommmdl/chaos-lab/actions/runs/39421860854)
+
+As 32 capturas da matriz guardaram 432.610 quadros sem drops reportados; a reanálise dos arquivos reproduziu o resultado. Os controles de conexão e de espera por cabeçalhos ficam separados dos timeouts da API. A matriz local não reproduziu o timeout de seis segundos e manteve uma conexão lenta sem correspondência no intervalo observado.
+
+A janela de atualização do encaminhamento e a permanência de uma tradução NAT são uma hipótese compatível com quatro casos. A falta de conntrack, regras e decisões de rota dessas tuplas impede apontar a causa exata. Aprovar recuperação e integridade da captura não significa que todas as requisições deram certo.
+
+## Como avaliar ou repetir
+
+Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.
+
+Para repetir, use a [ordem de estudo](study-guide.md) e a preparação do lab escolhido. Esta organização revisou a documentação e os links; não executou novamente todos os ambientes nem criou novos resultados operacionais.

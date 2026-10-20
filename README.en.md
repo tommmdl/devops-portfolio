@@ -2,64 +2,68 @@
 
 English · [Português](README.md)
 
-This is where I collect my DevOps projects and the things I am exploring to understand each tool. The idea is to get something running, introduce a few failures and learn how to investigate and recover the environment.
+This is the starting point for my DevOps labs. A notes application with an API and PostgreSQL connects the work: it starts in containers, then grows into image publication, Kubernetes, GitOps, observability and recovery exercises.
 
-Each lab has its own repository with code, instructions and a record of what was tested. Follow the sequence or pick a topic that interests you.
+Each repository contains the code, instructions and a record of what happened during testing. Failed builds, restore warnings and investigations with open questions are part of that record.
 
-## Where to start
+**[Architecture overview](docs/architecture.en.md) · [Study order](docs/study-guide.en.md) · [Results and evidence](docs/results.en.md)**
 
-| Project | What you will find |
+## How the work fits together
+
+```mermaid
+flowchart TB
+  App["Notes application: API and PostgreSQL"]
+  App --> Docker["Docker Compose"]
+  App --> Kube["Kubernetes and GitOps"]
+  Kube --> Obs["Metrics, logs, traces and alerts"]
+  App --> Recovery["Separate backup, DR and failover environments"]
+  App --> Chaos["Isolated Chaos Mesh environment"]
+```
+
+Labs reuse the application in different environments. The [architecture map](docs/architecture.en.md) explains GHCR publication, Argo CD's role and shared components. Jenkins, Terraform and Ansible have their own exercises, connected through the study route.
+
+## A few results to open first
+
+| Question | Where to look |
 | --- | --- |
-| [Linux](https://github.com/tommmdl/linux-operations-lab) | A script to inspect memory, disk and system load while practising basic diagnostics. |
-| [Docker](https://github.com/tommmdl/docker-lab) | A notes app with PostgreSQL for exploring networks, volumes and what happens when the database stops. |
-| [Jenkins](https://github.com/tommmdl/jenkins-lab) | A first pipeline, a successful build and a deliberate failure to help make sense of the logs. |
-| [GitHub Actions](https://github.com/tommmdl/github-actions-lab) | Testing the application before publishing its image to GHCR. |
-| [Terraform](https://github.com/tommmdl/terraform-lab) | Describing the same environment as code: creating it, reviewing changes, fixing drift and cleaning up. |
-| [Ansible](https://github.com/tommmdl/ansible-lab) | One role configures two targets, followed by unchanged reruns, templates, handlers and drift repair. |
-| [Kubernetes](https://github.com/tommmdl/kubernetes-lab) | The app gains replicas, a database volume and local-cluster exercises in recovery, scaling and rollback. |
-| [Kubernetes configuration](https://github.com/tommmdl/kubernetes-config-lab) | 26 exercises with ConfigMaps, Secrets, TLS, volumes and Downward API, with solutions and tests. |
-| [Argo CD](https://github.com/tommmdl/argocd-lab) | The application follows Git, with drift and automatic self-heal exercises. |
-| [Prometheus and Grafana](https://github.com/tommmdl/monitoring-lab) | Probes watch the app, a dashboard shows the signals and a drill tests alerting and recovery. |
-| [Loki and Grafana](https://github.com/tommmdl/logging-lab) | API and database logs reach Loki; a marker follows a message all the way to Grafana. |
-| [OpenTelemetry and Tempo](https://github.com/tommmdl/tracing-lab) | A request gains API and database spans, with the same trace ID available in logs. |
-| [Prometheus and Alertmanager alerts](https://github.com/tommmdl/alerting-lab) | Real API and database failures become notifications, with grouping, inhibition, silences and recovery. |
-| [Velero backup and recovery](https://github.com/tommmdl/backup-restore-lab) | A consistent PostgreSQL dump goes to S3 and returns in a new namespace, with application and data checks. |
-| [Cross-cluster disaster recovery](https://github.com/tommmdl/disaster-recovery-lab) | A second cluster recovers the application and PostgreSQL from S3 while the source is stopped and fenced from it. |
-| [Failover and failback](https://github.com/tommmdl/failover-lab) | The application moves to the other cluster and returns with new notes; PostgreSQL replicates synchronously and promotion requires fencing the previous writer. |
-| [Chaos Mesh](https://github.com/tommmdl/chaos-lab) | Five Pod and network faults exercise alerts, with recovery notifications, data checks and transient errors kept in the results. |
-| [Trivy and image security](https://github.com/tommmdl/security-lab) | Real scan reports and a gate that blocks images with severe findings while keeping the reasons visible in CI. |
+| What happens when a replica disappears? | [Capture inside the resilience matrix](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.en.md): 146 CI checks and five reproduced TCP timeouts; one backend remains unidentified. |
+| Can the application move to another cluster and return? | [Failover and failback](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.en.md): 48 checks locally and in CI, with previous-writer fencing and reconciliation of an uncertain write. |
+| Does the backup actually restore? | [Cross-cluster recovery](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.en.md): 32 checks locally and in CI, with data comparisons and two retained restore warnings. |
+| Is the published image the one that passed its tests? | [GitHub Actions delivery](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.en.md): a recorded run with 23 tests and image identity checks through the GHCR pull. |
 
-If you are new to these topics, I would start with Linux and Docker. Several projects reuse the notes app to connect the topics. Ansible uses two small targets to explore server configuration.
+Counts belong to the executions linked above. The [results guide](docs/results.en.md) includes further evidence for self-heal, tracing and image migrations with tested rollback.
 
-## What has been tried
+## The 18 labs
 
-The repositories include commands and results from Jenkins success/failure builds, database integration tests, image publication and the Terraform infrastructure lifecycle. Each project also explains the limits of those checks.
+| Stage | Repository | What to practise |
+| --- | --- | --- |
+| 1 · Foundations | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab/blob/main/README.en.md) | Read memory, disk and load before forming a diagnosis. |
+| 2 · Application | [docker-lab](https://github.com/tommmdl/docker-lab/blob/main/README.en.md) | Connect API and database, retain data and recover from a dependency failure. |
+| 3 · Delivery | [jenkins-lab](https://github.com/tommmdl/jenkins-lab/blob/main/README.en.md) | Compare successful and failed builds and both sets of artifacts. |
+| 3 · Delivery | [github-actions-lab](https://github.com/tommmdl/github-actions-lab/blob/main/README.en.md) | Test an application revision and publish the same image to GHCR. |
+| 4 · Automation | [terraform-lab](https://github.com/tommmdl/terraform-lab/blob/main/README.en.md) | Create Docker resources with modules, observe drift and run destroy. |
+| 4 · Automation | [ansible-lab](https://github.com/tommmdl/ansible-lab/blob/main/README.en.md) | Configure two Docker targets, verify idempotence and repair drift. |
+| 5 · Cluster | [kubernetes-lab](https://github.com/tommmdl/kubernetes-lab/blob/main/README.en.md) | Explore replicas, Services, PVCs, scaling and rollback in kind. |
+| 5 · Cluster | [kubernetes-config-lab](https://github.com/tommmdl/kubernetes-config-lab/blob/main/README.en.md) | Work through 26 ConfigMap, Secret, TLS and Downward API exercises. |
+| 6 · Desired state | [argocd-lab](https://github.com/tommmdl/argocd-lab/blob/main/README.en.md) | Compare drift with self-heal disabled and enabled. |
+| 6 · Images | [security-lab](https://github.com/tommmdl/security-lab/blob/main/README.en.md) | Read scans, understand blocked gates and test alternatives while retaining findings. |
+| 7 · Observability | [monitoring-lab](https://github.com/tommmdl/monitoring-lab/blob/main/README.en.md) | Query HTTP probes through Prometheus and Grafana. |
+| 7 · Observability | [logging-lab](https://github.com/tommmdl/logging-lab/blob/main/README.en.md) | Follow API and database logs through Alloy, Loki and Grafana. |
+| 7 · Observability | [tracing-lab](https://github.com/tommmdl/tracing-lab/blob/main/README.en.md) | Follow HTTP/SQL spans and locate logs using the trace ID. |
+| 7 · Observability | [alerting-lab](https://github.com/tommmdl/alerting-lab/blob/main/README.en.md) | Introduce faults and verify notifications, grouping and recovery. |
+| 8 · Recovery | [backup-restore-lab](https://github.com/tommmdl/backup-restore-lab/blob/main/README.en.md) | Restore resources and a PostgreSQL dump with Velero into another namespace. |
+| 8 · Recovery | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab/blob/main/README.en.md) | Recover into another cluster with the exercise source stopped and fenced. |
+| 8 · Recovery | [failover-lab](https://github.com/tommmdl/failover-lab/blob/main/README.en.md) | Perform a controlled switch with synchronous replication and return the data. |
+| 9 · Investigation | [chaos-lab](https://github.com/tommmdl/chaos-lab/blob/main/README.en.md) | Exercise Pod/network faults and correlate HTTP, alerts, packets and kernel events. |
 
-These are learning environments. The records distinguish assistant-assisted execution from work still awaiting the author's exploration.
+The [study order](docs/study-guide.en.md) explains what to prepare, observe and understand before moving on. Start with Linux and Docker, or open a result and work back through the components behind it.
 
-## A route to follow
+## Following and repeating the work
 
-The 100-day roadmap gives the work some direction. The pace can change as exercises become more interesting or difficult.
+Each lab README covers its prerequisites, setup and cleanup. Several integrations expect sibling repository checkouts; the guide identifies these dependencies. You can explore the portfolio without running every environment at once.
 
-| Days | Topic |
-| --- | --- |
-| 01–10 | Linux, Bash and Git |
-| 11–20 | Networking, DNS, HTTP and TLS |
-| 21–30 | Docker and Compose |
-| 31–40 | Jenkins and GitHub Actions |
-| 41–50 | Terraform |
-| 51–60 | Ansible and cloud |
-| 61–70 | Kubernetes |
-| 71–80 | GitOps and security |
-| 81–90 | Observability and SRE |
-| 91–100 | Integration, recovery and presenting the projects |
+Tests use Docker/WSL and kind. Clusters on the same host share a failure domain; recovery exercises do not measure machine loss or production availability. Scans and timings describe the recorded executions.
 
-GitOps, availability metrics, logs, traces and a first image security gate are now part of this route. Richer internal metrics, triage of the remaining findings and recovery are paths to explore next. Projects join the index as they are developed; the roadmap is not a list of completed work.
+Implementation and initial validation were assistant-assisted. Repeating the exercises and explaining decisions remain part of the learning work. The [journal](journal/README.en.md) tracks progress; the [notes template](templates/daily-log.en.md) helps record hypotheses, mistakes and next steps. The pace is flexible, with no automatic daily publication.
 
-## Keeping notes
-
-The [journal](journal/README.en.md) tracks progress. The [daily template](templates/daily-log.en.md) helps capture decisions, mistakes and next steps alongside the code. Automatic daily publication is not configured.
-
-Projects have Portuguese and English documentation. Passwords and infrastructure state stay out of Git. Future paid-cloud exercises should include expected costs and resource cleanup instructions.
-
-[About the history update](docs/history.md)
+Documentation in Portuguese and English · [About the history update](docs/history.md)
