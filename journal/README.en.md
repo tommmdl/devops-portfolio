@@ -61,3 +61,7 @@ Main Docker/basic Kubernetes now use the released basic Alpine digest; GitOps tr
 ### Investigating transient connections during replica removal
 
 In the chaos-lab local comparison, graceful removal went from seven failures in 1,592 direct requests to none in 1,645 after a five-second draining wait. Abrupt removal still failed; zero-grace deletion skips the hook. Bounded GET retries report internal connection failures and do not retry writes. A lost POST response test confirmed a single database commit. All 70 checks passed locally and in CI, which still recorded one direct failure in 1,425 requests with draining; the original failures and complete samples remain available. [Investigation in English and Portuguese](https://github.com/tommmdl/chaos-lab/blob/main/docs/connections.en.md).
+
+### Revisiting the CI timeout
+
+The six-second timeout started during draining, before observed SIGTERM; the old record cannot distinguish TCP from HTTP waiting. We added connection phases and tested a 500 ms TCP limit for GET only. With actual SYN drops, three attempts fit in about 1.5 seconds of connection waiting, versus two in almost four seconds. All 90 checks passed locally and in CI while preserving data and earlier reports. The timeout did not recur; six direct CI errors during abrupt removals were classified as resets or refusals. No additional graceful-removal failure-rate reduction was demonstrated, and the historical cause remains open. [Bilingual investigation and results](https://github.com/tommmdl/chaos-lab/blob/main/docs/connection-timeout.en.md).
