@@ -89,6 +89,8 @@ O auxiliar de preparação é privilegiado. `CapBnd` permanece amplo e alguns na
 
 Na investigação seguinte, o Firecracker ganhou validação de binário musl estático e correções de prontidão do teclado e coleta do rastreador. Sob carga concorrente no host, a comparação corrigida teve dez encerramentos limpos por variante. A candidata com espera de cinco segundos tolerou um atraso controlado de 1,5 segundo na vCPU e ainda falhou com o atraso longo. As rodadas anteriores reprovadas continuam publicadas; o gatilho do panic histórico segue em aberto e a candidata continua experimental. [Investigação, resultados e limites](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-investigation.md).
 
+A [captura de escalonamento e sinais](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.md) acrescentou duas campanhas sequenciais com 24 encerramentos limpos e 12 traces válidos sob carga, com controles sem captura e teste de limite de tarefas. A maior espera pronta foi 13,262 ms. Houve throttling em dois encerramentos com meia CPU, ambos limpos; o panic espontâneo não reapareceu. A captura inicialmente vazia e uma sobreposição de campanhas foram preservadas e excluídas da comparação final.
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.

@@ -88,6 +88,8 @@ The preparation helper is privileged. `CapBnd` remains broad and some namespaces
 
 The follow-up added static musl binary validation and corrected keyboard readiness and tracer collection. Under concurrent host CPU load, the corrected comparison completed ten clean shutdowns per variant. A five-second wait candidate tolerated a controlled 1.5-second vCPU delay and still failed the long-delay control. Earlier failed campaigns remain published; the historical panic trigger is unresolved and the candidate remains experimental. [Investigation, results and limits](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-investigation.en.md).
 
+The [scheduler and signal captures](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.en.md) added two sequential campaigns with 24 clean shutdowns and 12 valid traces under host load, with untraced controls and a task-limit test. The longest runnable wait was 13.262 ms. Two half-CPU shutdowns encountered throttling and both exited cleanly; the spontaneous panic did not recur. An initially empty capture and overlapping campaigns were retained and excluded from the final comparison.
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.
