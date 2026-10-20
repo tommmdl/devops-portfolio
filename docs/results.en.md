@@ -78,7 +78,13 @@ After the correction, **two local boots** passed on fresh disk copies, with gues
 
 [Build and tests](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md) · [Full reports](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/source-build-results.json) · [Pending hardening](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md#hardening-still-to-do)
 
-These are local WSL2/KVM tests, with no CI boot or notes application integration. Console findings for Spectre V2/Speculative Store Bypass remain visible. `jailer`, isolation and limits under failure, root-shell review, networking/egress and a hermetic toolchain still need work. BusyBox uses checksum/HTTPS verification, without the kernel's signature guarantee. The lab does not yet validate secure execution of untrusted code.
+These are local WSL2/KVM tests, with no CI boot or notes application integration. Console findings for Spectre V2/Speculative Store Bypass remain visible. Kernel/console hardening, networking/egress, a hermetic toolchain and complete isolation still need work. BusyBox uses checksum/HTTPS verification, without the kernel's signature guarantee. The lab does not yet validate secure execution of untrusted code.
+
+### First jailer controls
+
+The next stage passed two local runs of six scenarios, observing UID/GID, capabilities, namespaces, root and seccomp after boot. Controls exercised CPU throttling, task/descriptor rejection, OOM and deadline enforcement. Negative profiles and killed guests are not declared approved. [Tests and limits](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.en.md) · [Evidence](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/jailer-results.json).
+
+The preparation helper is privileged. `CapBnd` remains broad and some namespaces are shared with it. A shutdown panic under a tight quota ended with SIGSEGV and remains recorded; waiting for load workers and enlarging the shutdown quota passed repeat runs without proving cause or elimination. CPU hardening, guest networking and untrusted-code isolation still have gaps.
 
 ## Evaluating or repeating the work
 

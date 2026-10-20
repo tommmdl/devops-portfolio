@@ -78,7 +78,13 @@ Depois da correção, **dois boots locais** passaram em cópias novas do disco, 
 
 [Construção e testes](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md) · [Relatórios completos](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/source-build-results.json) · [Hardening pendente](https://github.com/tommmdl/firecracker-lab#o-que-ainda-falta-de-hardening)
 
-São testes locais em WSL2/KVM, sem boot no CI e sem integração com a aplicação de notas. O console mantém os achados de Spectre V2/Speculative Store Bypass. `jailer`, isolamento e limites sob falha, revisão do shell root, rede/egress e um toolchain hermético ainda precisam de trabalho. O BusyBox tem verificação por checksum/HTTPS; não recebe a mesma garantia de assinatura do kernel. O lab ainda não valida execução segura de código não confiável.
+São testes locais em WSL2/KVM, sem boot no CI e sem integração com a aplicação de notas. O console mantém os achados de Spectre V2/Speculative Store Bypass. Hardening do kernel/console, rede/egress, toolchain hermético e isolamento completo ainda precisam de trabalho. O BusyBox tem verificação por checksum/HTTPS; não recebe a mesma garantia de assinatura do kernel. O lab ainda não valida execução segura de código não confiável.
+
+### Primeiros controles com jailer
+
+A etapa seguinte passou em duas execuções locais de seis cenários, observando UID/GID, capacidades, namespaces, raiz e seccomp após o boot. Os controles exercitaram throttling de CPU, rejeição de tarefas/descritores, OOM e corte por prazo. Perfis negativos e guests mortos não são declarados aprovados. [Testes e limites](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.md) · [Evidências](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/jailer-results.json).
+
+O auxiliar de preparação é privilegiado. `CapBnd` permanece amplo e alguns namespaces são compartilhados com ele. Um panic de shutdown sob quota apertada terminou com SIGSEGV e continua no histórico; esperar a carga e ampliar a quota ao encerrar passou nas repetições, sem provar causa ou eliminação do problema. CPU, rede do guest e isolamento para código não confiável continuam com pendências.
 
 ## Como avaliar ou repetir
 

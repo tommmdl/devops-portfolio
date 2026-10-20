@@ -89,7 +89,7 @@ Local and CI tests do not establish host-loss tolerance, offsite storage, automa
 
 [Firecracker-lab](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md) starts with pinned Linux and BusyBox versions and hashes, verifies the kernel signature and builds a fresh ext4 image. Each test boots a copy through Firecracker and checks guest responses, shutdown and unchanged original hashes. The [account](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md) retains the earlier shutdown failure and two passing boots after the correction.
 
-This route is separate from API delivery and the clusters. `jailer` validation, kernel/console hardening and networking/outbound restriction tests remain before moving to third-party workloads.
+This route is separate from API delivery and the clusters. [Local jailer exercises](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.en.md) cover namespaces and cgroups using a privileged helper. Kernel/console hardening, narrower bootstrap privileges and networking/outbound restriction tests remain before moving to third-party workloads.
 
 ## Before running anything
 

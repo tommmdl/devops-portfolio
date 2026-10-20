@@ -77,3 +77,7 @@ The latest chaos investigation passed 146 CI checks and reproduced five TCP conn
 The catalog grows to 19 labs with an independent microVM route. Firecracker records a build from pinned sources, a shutdown failure due to missing AT/i8042/VT support, and two passing boots after the correction. Ten regressions and a modified-source control complete the record. [Results and pending hardening](../docs/results.en.md#9-build-a-microvm-and-verify-shutdown-too).
 
 Publication keeps CPU findings, BusyBox verification limits and missing validation of `jailer`, console/networking and untrusted-code isolation visible. This organization uses the recorded tests and adds no new runtime executions.
+
+### 2026-10-20 — What jailer protects and what remains open
+
+Two complete final-profile runs checked six scenarios each, including resource enforcement under load and controls that must reject unsafe outcomes. Runtime showed UID/GID 65534, cleared execution capabilities and seccomp after boot. The helper remains privileged, `CapBnd` broad and some namespaces shared. A shutdown panic with SIGSEGV is retained; repeated runs that stop load and enlarge the shutdown quota do not establish its cause or elimination. [Account and evidence](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.en.md).

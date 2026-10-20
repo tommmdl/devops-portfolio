@@ -89,7 +89,7 @@ Os testes locais e de CI não estabelecem tolerância à perda do host, armazena
 
 O [firecracker-lab](https://github.com/tommmdl/firecracker-lab) parte de Linux e BusyBox com versões e hashes fixados, verifica a assinatura do kernel e monta um ext4 novo. Cada teste inicia uma cópia desse disco com Firecracker e confere respostas do guest, encerramento e hashes dos originais. O [relato](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md) mantém a falha de shutdown anterior e os dois boots aprovados depois da correção.
 
-Essa trilha não participa do fluxo de entrega da API ou dos clusters. Ainda faltam validação do `jailer`, hardening do kernel e do console e testes de rede/restrições de saída antes de evoluir para workloads de terceiros.
+Essa trilha não participa do fluxo de entrega da API ou dos clusters. Há [ensaios locais do jailer](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.md) com namespaces e cgroups, executados por um auxiliar privilegiado. Hardening do kernel/console, bootstrap mais restrito e testes de rede/restrições de saída continuam pendentes antes de evoluir para workloads de terceiros.
 
 ## Antes de executar
 
