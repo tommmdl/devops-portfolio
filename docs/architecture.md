@@ -63,6 +63,7 @@ Os spans SQL observam o cliente Psycopg. Os testes de notificação conferem ent
 | DR lab | Restaura o backup em `devops-recovery`, no namespace `dr-notes`, com a origem isolada do exercício parada. |
 | Failover lab | Namespace `failover-demo` em cada cluster, bancos próprios com replicação síncrona e gateway para a troca controlada. |
 | Chaos lab | Aplicação em `chaos-demo`, observação em `chaos-observe` e Chaos Mesh em `chaos-system`; os experimentos ficam separados da aplicação principal. |
+| Firecracker lab | MicroVM independente em Linux/WSL2 com KVM, kernel compilado e rootfs mínimo; sem Kubernetes, rede ou aplicação de notas no guest. |
 
 Ter namespaces ou clusters diferentes ajuda a delimitar os exercícios. Os ambientes locais continuam compartilhando Docker/WSL e o computador.
 
@@ -83,6 +84,12 @@ flowchart LR
 Backup/DR e failover são exercícios distintos. O backup recupera o ponto registrado no dump; a escrita posterior ao backup fica fora desse ponto. O failover usa replicação física e exige confirmar o bloqueio do escritor anterior antes da promoção. A volta leva em conta as escritas feitas no destino.
 
 Os testes locais e de CI não estabelecem tolerância à perda do host, armazenamento offsite, eleição automática ou RTO/RPO de produção. Os avisos de restore, escritas com resposta incerta e falhas de conexão fazem parte das [evidências](results.md).
+
+## Uma trilha própria de microVMs
+
+O [firecracker-lab](https://github.com/tommmdl/firecracker-lab) parte de Linux e BusyBox com versões e hashes fixados, verifica a assinatura do kernel e monta um ext4 novo. Cada teste inicia uma cópia desse disco com Firecracker e confere respostas do guest, encerramento e hashes dos originais. O [relato](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md) mantém a falha de shutdown anterior e os dois boots aprovados depois da correção.
+
+Essa trilha não participa do fluxo de entrega da API ou dos clusters. Ainda faltam validação do `jailer`, hardening do kernel e do console e testes de rede/restrições de saída antes de evoluir para workloads de terceiros.
 
 ## Antes de executar
 

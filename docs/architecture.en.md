@@ -63,6 +63,7 @@ SQL spans observe the Psycopg client. Notification tests check delivery to the l
 | DR lab | Restores the backup into `devops-recovery`, in namespace `dr-notes`, with the exercise's isolated source stopped. |
 | Failover lab | Namespace `failover-demo` in each cluster, dedicated synchronously replicated databases and a gateway for controlled switching. |
 | Chaos lab | Application in `chaos-demo`, observation in `chaos-observe` and Chaos Mesh in `chaos-system`; experiments are separated from the main application. |
+| Firecracker lab | Independent Linux/WSL2 KVM microVM with a compiled kernel and minimal rootfs; no Kubernetes, networking or notes application inside the guest. |
 
 Separate namespaces or clusters help define exercise boundaries. Local environments still share Docker/WSL and the computer.
 
@@ -83,6 +84,12 @@ flowchart LR
 Backup/DR and failover are different exercises. Backup restores the point recorded in the dump; a later write falls outside that recovery point. Failover uses physical replication and requires confirmation that the previous writer is fenced before promotion. Returning service accounts for writes made at the destination.
 
 Local and CI tests do not establish host-loss tolerance, offsite storage, automatic elections or production RTO/RPO. Restore warnings, writes with uncertain responses and connection failures remain part of the [evidence](results.en.md).
+
+## A separate microVM route
+
+[Firecracker-lab](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md) starts with pinned Linux and BusyBox versions and hashes, verifies the kernel signature and builds a fresh ext4 image. Each test boots a copy through Firecracker and checks guest responses, shutdown and unchanged original hashes. The [account](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md) retains the earlier shutdown failure and two passing boots after the correction.
+
+This route is separate from API delivery and the clusters. `jailer` validation, kernel/console hardening and networking/outbound restriction tests remain before moving to third-party workloads.
 
 ## Before running anything
 

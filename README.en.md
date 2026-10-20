@@ -20,7 +20,7 @@ flowchart TB
   App --> Chaos["Isolated Chaos Mesh environment"]
 ```
 
-Labs reuse the application in different environments. The [architecture map](docs/architecture.en.md) explains GHCR publication, Argo CD's role and shared components. Jenkins, Terraform and Ansible have their own exercises, connected through the study route.
+Labs reuse the application in different environments. The [architecture map](docs/architecture.en.md) explains GHCR publication, Argo CD's role and shared components. Jenkins, Terraform and Ansible have their own exercises, connected through the study route. Firecracker adds an independent Linux/KVM microVM route; the notes application has not been run in that guest.
 
 ## A few results to open first
 
@@ -30,10 +30,11 @@ Labs reuse the application in different environments. The [architecture map](doc
 | Can the application move to another cluster and return? | [Failover and failback](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.en.md): 48 checks locally and in CI, with previous-writer fencing and reconciliation of an uncertain write. |
 | Does the backup actually restore? | [Cross-cluster recovery](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.en.md): 32 checks locally and in CI, with data comparisons and two retained restore warnings. |
 | Is the published image the one that passed its tests? | [GitHub Actions delivery](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.en.md): a recorded run with 23 tests and image identity checks through the GHCR pull. |
+| Does the microVM actually boot and shut down? | [Kernel and image from scratch](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md): two passing local boots after fixing shutdown, ten regressions and the retained initial failure; hardening remains pending. |
 
 Counts belong to the executions linked above. The [results guide](docs/results.en.md) includes further evidence for self-heal, tracing and image migrations with tested rollback.
 
-## The 18 labs
+## The 19 labs
 
 | Stage | Repository | What to practise |
 | --- | --- | --- |
@@ -55,6 +56,7 @@ Counts belong to the executions linked above. The [results guide](docs/results.e
 | 8 · Recovery | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab/blob/main/README.en.md) | Recover into another cluster with the exercise source stopped and fenced. |
 | 8 · Recovery | [failover-lab](https://github.com/tommmdl/failover-lab/blob/main/README.en.md) | Perform a controlled switch with synchronous replication and return the data. |
 | 9 · Investigation | [chaos-lab](https://github.com/tommmdl/chaos-lab/blob/main/README.en.md) | Exercise Pod/network faults and correlate HTTP, alerts, packets and kernel events. |
+| 10 · MicroVMs | [firecracker-lab](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md) | Build a kernel/rootfs from pinned sources, test boot and shutdown, and examine pending hardening. |
 
 The [study order](docs/study-guide.en.md) explains what to prepare, observe and understand before moving on. Start with Linux and Docker, or open a result and work back through the components behind it.
 
@@ -62,7 +64,7 @@ The [study order](docs/study-guide.en.md) explains what to prepare, observe and 
 
 Each lab README covers its prerequisites, setup and cleanup. Several integrations expect sibling repository checkouts; the guide identifies these dependencies. You can explore the portfolio without running every environment at once.
 
-Tests use Docker/WSL and kind. Clusters on the same host share a failure domain; recovery exercises do not measure machine loss or production availability. Scans and timings describe the recorded executions.
+Tests use Docker/WSL, kind and Firecracker microVMs with KVM. Clusters on the same host share a failure domain; recovery exercises do not measure machine loss or production availability. Scans and timings describe the recorded executions.
 
 Implementation and initial validation were assistant-assisted. Repeating the exercises and explaining decisions remain part of the learning work. The [journal](journal/README.en.md) tracks progress; the [notes template](templates/daily-log.en.md) helps record hypotheses, mistakes and next steps. The pace is flexible, with no automatic daily publication.
 

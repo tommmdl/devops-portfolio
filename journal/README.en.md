@@ -71,3 +71,9 @@ The six-second timeout started during draining, before observed SIGTERM; the old
 The portfolio now connects all 18 labs through an architecture map, a study route and selected results with direct evidence links. [Start with the guide](../README.en.md) or open the [results](../docs/results.en.md). Older entries describe their own stage of the work.
 
 The latest chaos investigation passed 146 CI checks and reproduced five TCP connect timeouts. Four had packet matches to departing Pods; the fifth began before the experiment and has no identified backend. Original HTTP errors, controls and the local observation gap remain in the [bilingual account](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.en.md). This portfolio update reorganizes those records; it does not report a new runtime test.
+
+### 2026-10-20 — Firecracker joins the public portfolio
+
+The catalog grows to 19 labs with an independent microVM route. Firecracker records a build from pinned sources, a shutdown failure due to missing AT/i8042/VT support, and two passing boots after the correction. Ten regressions and a modified-source control complete the record. [Results and pending hardening](../docs/results.en.md#9-build-a-microvm-and-verify-shutdown-too).
+
+Publication keeps CPU findings, BusyBox verification limits and missing validation of `jailer`, console/networking and untrusted-code isolation visible. This organization uses the recorded tests and adds no new runtime executions.

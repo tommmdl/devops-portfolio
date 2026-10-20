@@ -72,3 +72,9 @@ O timeout de seis segundos começou durante a drenagem, antes do SIGTERM observa
 O portfólio agora conecta os 18 labs por um mapa de arquitetura, uma ordem de estudo e resultados selecionados com links diretos para as evidências. [Comece pelo guia](../README.md) ou abra os [resultados](../docs/results.md). As entradas anteriores descrevem cada etapa na época em que foi registrada.
 
 A investigação mais recente de caos passou em 146 verificações no CI e reproduziu cinco timeouts na conexão TCP. Quatro tiveram pacotes associados a Pods em encerramento; o quinto começou antes do experimento e continua sem backend identificado. Erros HTTP, controles e a lacuna da observação local ficam no [relato bilíngue](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.md). Esta atualização organiza os registros; não declara um novo teste dos ambientes.
+
+### 20/10/2026 — Firecracker entra no portfólio público
+
+O catálogo passa a 19 labs com uma trilha independente de microVMs. O Firecracker registra construção a partir de fontes fixados, uma falha de shutdown por ausência de suporte AT/i8042/VT e dois boots aprovados depois da correção. Dez regressões e um controle de fonte alterado completam o registro. [Resultados e hardening pendente](../docs/results.md#9-construir-uma-microvm-e-verificar-também-o-encerramento).
+
+A publicação mantém visíveis os achados de CPU, os limites da verificação do BusyBox e a falta de validação de `jailer`, console/rede e isolamento para código não confiável. Esta organização usa os testes já registrados; não acrescenta novas execuções.

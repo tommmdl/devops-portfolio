@@ -34,8 +34,11 @@ estudos/
 | 7 · Observar de ponta a ponta | [Monitoring](https://github.com/tommmdl/monitoring-lab) → [Logging](https://github.com/tommmdl/logging-lab) → [Tracing](https://github.com/tommmdl/tracing-lab) → [Alerting](https://github.com/tommmdl/alerting-lab). Faça uma requisição e depois provoque uma falha. | Como passar de uma sonda ou alerta para logs e spans; como confirmar a recuperação e a entrega da notificação. |
 | 8 · Recuperar e retornar | [Backup](https://github.com/tommmdl/backup-restore-lab) → [DR](https://github.com/tommmdl/disaster-recovery-lab) → [Failover](https://github.com/tommmdl/failover-lab). Compare o ponto de backup, os dados restaurados e as escritas no destino. | Por que replicação e backup resolvem problemas diferentes; por que bloquear o escritor anterior e reconciliar uma resposta incerta. |
 | 9 · Investigar falhas | [Chaos Mesh](https://github.com/tommmdl/chaos-lab): acompanhe HTTP, alertas, eventos, pacotes e recuperação nas remoções. | A diferença entre recuperar réplicas e atender todas as requisições; o que prova um SYN sem resposta e o que continua desconhecido. |
+| 10 · Aprofundar em microVMs | [Firecracker](https://github.com/tommmdl/firecracker-lab): verifique fontes, compile kernel/rootfs, execute o boot em uma cópia e confira o encerramento. | Por que HTTP 204 não prova shutdown, como os hashes preservam os originais e quais proteções ainda não foram validadas. |
 
 Você pode fazer o primeiro scan do security-lab logo depois do Docker e voltar a ele ao trocar imagens. Na etapa de automação, Terraform e Ansible ensinam abordagens diferentes em ambientes separados; o Terraform deste portfólio não provisiona os clusters kind.
+
+O Firecracker é uma trilha independente de aprofundamento: dá para iniciá-la depois de Linux, sem subir os clusters ou a aplicação de notas. Exige Linux x86-64 com KVM acessível para o boot, ferramentas de compilação e espaço para fontes e cópias do disco. Comece pelo [guia de construção](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md), leia o hardening pendente e use apenas tarefas conhecidas nesta etapa.
 
 ## Dependências que merecem atenção
 

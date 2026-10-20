@@ -20,7 +20,7 @@ flowchart TB
   App --> Chaos["Ambiente isolado de Chaos Mesh"]
 ```
 
-Os labs reaproveitam a aplicação em ambientes diferentes. O [mapa de arquitetura](docs/architecture.md) detalha a publicação no GHCR, o papel do Argo CD e quais componentes são compartilhados. Jenkins, Terraform e Ansible têm exercícios próprios, conectados pela trilha de estudo.
+Os labs reaproveitam a aplicação em ambientes diferentes. O [mapa de arquitetura](docs/architecture.md) detalha a publicação no GHCR, o papel do Argo CD e quais componentes são compartilhados. Jenkins, Terraform e Ansible têm exercícios próprios, conectados pela trilha de estudo. O Firecracker acrescenta uma trilha independente de microVMs em Linux/KVM; a aplicação de notas ainda não foi executada nesse guest.
 
 ## Alguns resultados para abrir primeiro
 
@@ -30,10 +30,11 @@ Os labs reaproveitam a aplicação em ambientes diferentes. O [mapa de arquitetu
 | A aplicação consegue ir para outro cluster e voltar? | [Failover e failback](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.md): 48 verificações locais e no CI, com bloqueio do escritor anterior e reconciliação de uma escrita incerta. |
 | O backup realmente restaura? | [Recuperação entre clusters](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.md): 32 verificações locais e no CI, com dados conferidos e dois avisos do restore mantidos. |
 | A imagem publicada é a que passou pelos testes? | [Entrega pelo GitHub Actions](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.md): execução registrada com 23 testes e conferência da identidade da imagem até o pull do GHCR. |
+| A microVM realmente inicia e encerra? | [Kernel e imagem do zero](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md): dois boots locais aprovados após corrigir o shutdown, dez regressões e a falha inicial preservada; hardening continua pendente. |
 
 Os números pertencem às execuções indicadas nos links. O [guia de resultados](docs/results.md) reúne outras evidências, incluindo self-heal, tracing e migrações de imagens com rollback testado.
 
-## Os 18 labs
+## Os 19 labs
 
 | Etapa | Repositório | O que praticar |
 | --- | --- | --- |
@@ -55,6 +56,7 @@ Os números pertencem às execuções indicadas nos links. O [guia de resultados
 | 8 · Recuperação | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab) | Recuperar em outro cluster com a origem do exercício parada e isolada. |
 | 8 · Recuperação | [failover-lab](https://github.com/tommmdl/failover-lab) | Executar uma troca controlada com replicação síncrona e retorno dos dados. |
 | 9 · Investigação | [chaos-lab](https://github.com/tommmdl/chaos-lab) | Exercitar falhas de Pods/rede e cruzar HTTP, alertas, pacotes e eventos do kernel. |
+| 10 · MicroVMs | [firecracker-lab](https://github.com/tommmdl/firecracker-lab) | Construir kernel/rootfs com fontes fixados, testar boot e shutdown e examinar o hardening pendente. |
 
 A [ordem de estudo](docs/study-guide.md) explica o que preparar, o que observar e quando avançar. Dá para começar por Linux e Docker ou abrir um resultado e voltar às peças que o sustentam.
 
@@ -62,7 +64,7 @@ A [ordem de estudo](docs/study-guide.md) explica o que preparar, o que observar 
 
 Cada README de lab tem seus pré-requisitos, instalação e limpeza. Várias integrações usam repositórios como pastas irmãs; o guia indica essas dependências. O portfólio não exige subir todos os ambientes ao mesmo tempo.
 
-Os testes são de laboratório, em Docker/WSL e kind. Clusters no mesmo host compartilham um domínio de falha; os ensaios de recuperação não medem perda da máquina ou disponibilidade de produção. Scans e tempos de teste são fotografias das execuções registradas.
+Os testes são de laboratório, em Docker/WSL, kind e microVMs Firecracker com KVM. Clusters no mesmo host compartilham um domínio de falha; os ensaios de recuperação não medem perda da máquina ou disponibilidade de produção. Scans e tempos de teste são fotografias das execuções registradas.
 
 A implementação e as primeiras validações tiveram ajuda do assistente. Repetir os exercícios e explicar as decisões faz parte do estudo. O [diário](journal/README.md) registra a evolução; o [modelo de anotação](templates/daily-log.md) ajuda a guardar hipóteses, erros e próximos passos. O ritmo é livre, sem publicação diária automática.
 

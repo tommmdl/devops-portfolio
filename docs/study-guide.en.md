@@ -34,8 +34,11 @@ studies/
 | 7 · Observe the whole path | [Monitoring](https://github.com/tommmdl/monitoring-lab/blob/main/README.en.md) → [Logging](https://github.com/tommmdl/logging-lab/blob/main/README.en.md) → [Tracing](https://github.com/tommmdl/tracing-lab/blob/main/README.en.md) → [Alerting](https://github.com/tommmdl/alerting-lab/blob/main/README.en.md). Send a request, then introduce a fault. | How to move from a probe or alert to logs and spans, and verify recovery and notification delivery. |
 | 8 · Recover and return | [Backup](https://github.com/tommmdl/backup-restore-lab/blob/main/README.en.md) → [DR](https://github.com/tommmdl/disaster-recovery-lab/blob/main/README.en.md) → [Failover](https://github.com/tommmdl/failover-lab/blob/main/README.en.md). Compare the backup point, restored data and destination writes. | Why replication and backup solve different problems, why the previous writer must be fenced and how to reconcile an uncertain response. |
 | 9 · Investigate faults | [Chaos Mesh](https://github.com/tommmdl/chaos-lab/blob/main/README.en.md): follow HTTP, alerts, events, packets and recovery during removals. | The difference between recovered replicas and successful requests, what an unanswered SYN proves and what remains unknown. |
+| 10 · Explore microVMs | [Firecracker](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md): verify sources, compile kernel/rootfs, boot a copy and check shutdown. | Why HTTP 204 does not prove shutdown, how hashes check original preservation, and which protections remain unvalidated. |
 
 You can run the first security-lab scan just after Docker and revisit it when changing images. Terraform and Ansible teach different approaches in separate environments; this portfolio's Terraform project does not provision the kind clusters.
+
+Firecracker is an independent deeper route: you can start after Linux without bringing up clusters or the notes application. Boot requires Linux x86-64 with accessible KVM, build tools and space for sources and disk copies. Start with the [build guide](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md), read the pending hardening work and use only known tasks at this stage.
 
 ## Dependencies to keep in mind
 

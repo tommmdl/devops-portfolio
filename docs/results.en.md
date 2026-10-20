@@ -70,6 +70,16 @@ The matrix's 32 captures retained 432,610 frames with no reported drops; archive
 
 A forwarding-update window and a persistent NAT mapping are consistent with four cases. Missing conntrack, rule and routing-decision records for those tuples prevent an exact causal attribution. Passing recovery and capture-integrity checks does not mean every request succeeded.
 
+## 9. Build a microVM and verify shutdown too
+
+Firecracker-lab compiles Linux **6.12.113** with a verified OpenPGP signature and BusyBox **1.38.0** with a pinned SHA256. Its ext4 image is assembled from scratch. The first attempt reached the shell but lacked AT/i8042/VT support for Ctrl+Alt+Del: the API returned 204 and shutdown required a forced stop. The test remained failed and its record was preserved.
+
+After the correction, **two local boots** passed on fresh disk copies, with guest responses, root remounted read-only, HTTP 204 and exit zero. Original hashes remained unchanged. There are **ten passing regressions** and a real control rejecting a modified source archive before extraction.
+
+[Build and tests](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md) · [Full reports](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/source-build-results.json) · [Pending hardening](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md#hardening-still-to-do)
+
+These are local WSL2/KVM tests, with no CI boot or notes application integration. Console findings for Spectre V2/Speculative Store Bypass remain visible. `jailer`, isolation and limits under failure, root-shell review, networking/egress and a hermetic toolchain still need work. BusyBox uses checksum/HTTPS verification, without the kernel's signature guarantee. The lab does not yet validate secure execution of untrusted code.
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.

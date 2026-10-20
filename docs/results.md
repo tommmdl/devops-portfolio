@@ -70,6 +70,16 @@ As 32 capturas da matriz guardaram 432.610 quadros sem drops reportados; a rean�
 
 A janela de atualização do encaminhamento e a permanência de uma tradução NAT são uma hipótese compatível com quatro casos. A falta de conntrack, regras e decisões de rota dessas tuplas impede apontar a causa exata. Aprovar recuperação e integridade da captura não significa que todas as requisições deram certo.
 
+## 9. Construir uma microVM e verificar também o encerramento
+
+O firecracker-lab compila Linux **6.12.113** com assinatura OpenPGP verificada e BusyBox **1.38.0** com SHA256 fixado. A imagem ext4 é montada do zero. A primeira tentativa chegou ao shell, mas faltavam os drivers AT/i8042/VT para receber Ctrl+Alt+Del: a API respondeu 204 e o encerramento precisou ser forçado. O teste ficou reprovado e o registro foi preservado.
+
+Depois da correção, **dois boots locais** passaram em cópias novas do disco, com respostas do guest, root remontado somente para leitura, HTTP 204 e saída zero. Os hashes dos originais ficaram intactos. Há **dez testes de regressão** aprovados e um controle real que rejeita fonte alterado antes da extração.
+
+[Construção e testes](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md) · [Relatórios completos](https://github.com/tommmdl/firecracker-lab/blob/main/evidence/source-build-results.json) · [Hardening pendente](https://github.com/tommmdl/firecracker-lab#o-que-ainda-falta-de-hardening)
+
+São testes locais em WSL2/KVM, sem boot no CI e sem integração com a aplicação de notas. O console mantém os achados de Spectre V2/Speculative Store Bypass. `jailer`, isolamento e limites sob falha, revisão do shell root, rede/egress e um toolchain hermético ainda precisam de trabalho. O BusyBox tem verificação por checksum/HTTPS; não recebe a mesma garantia de assinatura do kernel. O lab ainda não valida execução segura de código não confiável.
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.
