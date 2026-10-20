@@ -86,6 +86,9 @@ A etapa seguinte passou em duas execuções locais de seis cenários, observando
 
 O auxiliar de preparação é privilegiado. `CapBnd` permanece amplo e alguns namespaces são compartilhados com ele. Um panic de shutdown sob quota apertada terminou com SIGSEGV e continua no histórico; esperar a carga e ampliar a quota ao encerrar passou nas repetições, sem provar causa ou eliminação do problema. CPU, rede do guest e isolamento para código não confiável continuam com pendências.
 
+
+Na investigação seguinte, o Firecracker ganhou validação de binário musl estático e correções de prontidão do teclado e coleta do rastreador. Sob carga concorrente no host, a comparação corrigida teve dez encerramentos limpos por variante. A candidata com espera de cinco segundos tolerou um atraso controlado de 1,5 segundo na vCPU e ainda falhou com o atraso longo. As rodadas anteriores reprovadas continuam publicadas; o gatilho do panic histórico segue em aberto e a candidata continua experimental. [Investigação, resultados e limites](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-investigation.md).
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.

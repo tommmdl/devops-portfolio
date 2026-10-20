@@ -86,6 +86,8 @@ The next stage passed two local runs of six scenarios, observing UID/GID, capabi
 
 The preparation helper is privileged. `CapBnd` remains broad and some namespaces are shared with it. A shutdown panic under a tight quota ended with SIGSEGV and remains recorded; waiting for load workers and enlarging the shutdown quota passed repeat runs without proving cause or elimination. CPU hardening, guest networking and untrusted-code isolation still have gaps.
 
+The follow-up added static musl binary validation and corrected keyboard readiness and tracer collection. Under concurrent host CPU load, the corrected comparison completed ten clean shutdowns per variant. A five-second wait candidate tolerated a controlled 1.5-second vCPU delay and still failed the long-delay control. Earlier failed campaigns remain published; the historical panic trigger is unresolved and the candidate remains experimental. [Investigation, results and limits](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-investigation.en.md).
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.
