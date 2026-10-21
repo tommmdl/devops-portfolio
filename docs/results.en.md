@@ -94,6 +94,8 @@ The [protocol investigation with kernel stacks](https://github.com/tommmdl/firec
 
 The [helper memory investigation](https://github.com/tommmdl/firecracker-lab/blob/main/docs/helper-memory.en.md) released clone cache only after each VM stopped, preserving disks. With unchanged ceilings, the observed peak fell from 768 to 262.45 MiB and limit events from 7,434 to zero. The pair completed 24 clean shutdowns with verified file hashes. Regression evidence retains an API readiness failure, its correction, and negative controls; the historical vCPU panic remains unexplained.
 
+The [expanded repeat with corrected memory handling](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-repetitions.en.md) added 72 clean shutdowns under load and 36 valid captures, retaining jailer isolation and the official one-second internal deadline. Helper peaks ranged from 322.23 to 326.75 MiB, with no limit events or OOM; all 144 clone files retained their hashes. Empty stacks, read errors and small PSI increments remain visible. The historical panic did not recur; its cause remains unresolved.
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.

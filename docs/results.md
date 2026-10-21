@@ -95,6 +95,8 @@ A [investigação do protocolo com stacks do kernel](https://github.com/tommmdl/
 
 Na [investigação de memória do auxiliar](https://github.com/tommmdl/firecracker-lab/blob/main/docs/helper-memory.md), o cache dos clones foi liberado somente após parar cada VM, mantendo os discos. Com os mesmos limites, o pico observado caiu de 768 para 262,45 MiB e os eventos no teto passaram de 7.434 para zero. O par teve 24 encerramentos limpos e todos os hashes conferidos. A regressão preserva uma falha de prontidão da API, sua correção e os controles negativos; a causa do panic histórico da vCPU continua em aberto.
 
+A [repetição ampliada com a memória corrigida](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-repetitions.md) acrescentou 72 encerramentos limpos sob carga e 36 capturas válidas, mantendo o jailer e o prazo interno oficial de um segundo. Os picos do auxiliar ficaram entre 322,23 e 326,75 MiB, sem eventos no teto ou OOM; os 144 arquivos dos clones mantiveram os hashes. Stacks vazias, erros de leitura e pequenos incrementos de PSI continuam visíveis. O panic histórico não reapareceu; sua causa permanece em aberto.
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.
