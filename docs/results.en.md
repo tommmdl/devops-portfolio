@@ -2,7 +2,7 @@
 
 [Português](results.md) · [Home](../README.en.md) · [Architecture](architecture.en.md) · [Study order](study-guide.en.md)
 
-Selection reviewed on **2026-10-20**. These records show decisions, failures or recoveries that can be inspected. Counts belong to the cited executions; they are not a cumulative score or a promise about the next run.
+Selection reviewed on **2026-10-21**. These records show decisions, failures or recoveries that can be inspected. Counts belong to the cited executions; they are not a cumulative score or a promise about the next run.
 
 ## 1. Publish what was tested
 
@@ -91,6 +91,8 @@ The follow-up added static musl binary validation and corrected keyboard readine
 The [scheduler and signal captures](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.en.md) added two sequential campaigns with 24 clean shutdowns and 12 valid traces under host load, with untraced controls and a task-limit test. The longest runnable wait was 13.262 ms. Two half-CPU shutdowns encountered throttling and both exited cleanly; the spontaneous panic did not recur. An initially empty capture and overlapping campaigns were retained and excluded from the final comparison.
 
 The [protocol investigation with kernel stacks](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-protocol.en.md) followed the official binary through 20 clean shutdowns, ten instrumented. Channel waiting reached 5.867 ms and the join interval reached 83 µs. One futex stack was correlated with the channel-wait window. Setup, validator, and read errors remain visible; the historical panic did not recur and its cause remains unresolved.
+
+The [helper memory investigation](https://github.com/tommmdl/firecracker-lab/blob/main/docs/helper-memory.en.md) released clone cache only after each VM stopped, preserving disks. With unchanged ceilings, the observed peak fell from 768 to 262.45 MiB and limit events from 7,434 to zero. The pair completed 24 clean shutdowns with verified file hashes. Regression evidence retains an API readiness failure, its correction, and negative controls; the historical vCPU panic remains unexplained.
 
 ## Evaluating or repeating the work
 

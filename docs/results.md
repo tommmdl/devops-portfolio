@@ -2,7 +2,7 @@
 
 [English](results.en.md) · [Início](../README.md) · [Arquitetura](architecture.md) · [Ordem de estudo](study-guide.md)
 
-Seleção revisada em **20/10/2026**. Escolhi estes registros porque mostram uma decisão, uma falha ou uma recuperação que dá para inspecionar. Os números pertencem às execuções citadas; não são um placar acumulado nem uma promessa sobre a próxima execução.
+Seleção revisada em **21/10/2026**. Escolhi estes registros porque mostram uma decisão, uma falha ou uma recuperação que dá para inspecionar. Os números pertencem às execuções citadas; não são um placar acumulado nem uma promessa sobre a próxima execução.
 
 ## 1. Publicar o que foi testado
 
@@ -92,6 +92,8 @@ Na investigação seguinte, o Firecracker ganhou validação de binário musl es
 A [captura de escalonamento e sinais](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.md) acrescentou duas campanhas sequenciais com 24 encerramentos limpos e 12 traces válidos sob carga, com controles sem captura e teste de limite de tarefas. A maior espera pronta foi 13,262 ms. Houve throttling em dois encerramentos com meia CPU, ambos limpos; o panic espontâneo não reapareceu. A captura inicialmente vazia e uma sobreposição de campanhas foram preservadas e excluídas da comparação final.
 
 A [investigação do protocolo com stacks do kernel](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-protocol.md) acompanhou o binário oficial em 20 encerramentos limpos, dez deles instrumentados. A espera do canal chegou a 5,867 ms; o intervalo do `join`, a 83 µs. Uma stack em futex foi correlacionada à janela de espera do canal. Os erros de preparação, do validador e de leitura ficaram visíveis; o panic antigo não reapareceu e sua causa continua aberta.
+
+Na [investigação de memória do auxiliar](https://github.com/tommmdl/firecracker-lab/blob/main/docs/helper-memory.md), o cache dos clones foi liberado somente após parar cada VM, mantendo os discos. Com os mesmos limites, o pico observado caiu de 768 para 262,45 MiB e os eventos no teto passaram de 7.434 para zero. O par teve 24 encerramentos limpos e todos os hashes conferidos. A regressão preserva uma falha de prontidão da API, sua correção e os controles negativos; a causa do panic histórico da vCPU continua em aberto.
 
 ## Como avaliar ou repetir
 
