@@ -96,6 +96,8 @@ The [helper memory investigation](https://github.com/tommmdl/firecracker-lab/blo
 
 The [expanded repeat with corrected memory handling](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-repetitions.en.md) added 72 clean shutdowns under load and 36 valid captures, retaining jailer isolation and the official one-second internal deadline. Helper peaks ranged from 322.23 to 326.75 MiB, with no limit events or OOM; all 144 clone files retained their hashes. Empty stacks, read errors and small PSI increments remain visible. The historical panic did not recur; its cause remains unresolved.
 
+The [memory-stall investigation](https://github.com/tommmdl/firecracker-lab/blob/main/docs/memory-stalls.en.md) captured helper readahead and allocation slowpaths, separating memory PSI from I/O and container limits. All 50 completed shutdowns were clean; a campaign interrupted by an empty PID read remains marked as failed. The correction passed a loaded repeat, six original controls and 39 automated tests. Stacks identify paths in this reproduction without retroactively assigning every historical stall or resolving the historical panic.
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.

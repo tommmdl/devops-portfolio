@@ -97,6 +97,8 @@ Na [investigação de memória do auxiliar](https://github.com/tommmdl/firecrack
 
 A [repetição ampliada com a memória corrigida](https://github.com/tommmdl/firecracker-lab/blob/main/docs/shutdown-repetitions.md) acrescentou 72 encerramentos limpos sob carga e 36 capturas válidas, mantendo o jailer e o prazo interno oficial de um segundo. Os picos do auxiliar ficaram entre 322,23 e 326,75 MiB, sem eventos no teto ou OOM; os 144 arquivos dos clones mantiveram os hashes. Stacks vazias, erros de leitura e pequenos incrementos de PSI continuam visíveis. O panic histórico não reapareceu; sua causa permanece em aberto.
 
+A [investigação das esperas de memória](https://github.com/tommmdl/firecracker-lab/blob/main/docs/memory-stalls.md) capturou readahead e alocação lenta do auxiliar, com PSI de memória separado de I/O e dos limites do container. Os 50 encerramentos concluídos foram limpos; uma campanha interrompida por leitura de PID vazio continua marcada como falha. A correção passou na repetição sob carga, nos seis controles originais e em 39 testes automatizados. As stacks explicam caminhos da reprodução, sem atribuir retroativamente cada espera antiga nem resolver o panic histórico.
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.
