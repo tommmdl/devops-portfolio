@@ -91,6 +91,8 @@ Na investigação seguinte, o Firecracker ganhou validação de binário musl es
 
 A [captura de escalonamento e sinais](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.md) acrescentou duas campanhas sequenciais com 24 encerramentos limpos e 12 traces válidos sob carga, com controles sem captura e teste de limite de tarefas. A maior espera pronta foi 13,262 ms. Houve throttling em dois encerramentos com meia CPU, ambos limpos; o panic espontâneo não reapareceu. A captura inicialmente vazia e uma sobreposição de campanhas foram preservadas e excluídas da comparação final.
 
+A [investigação do protocolo com stacks do kernel](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-protocol.md) acompanhou o binário oficial em 20 encerramentos limpos, dez deles instrumentados. A espera do canal chegou a 5,867 ms; o intervalo do `join`, a 83 µs. Uma stack em futex foi correlacionada à janela de espera do canal. Os erros de preparação, do validador e de leitura ficaram visíveis; o panic antigo não reapareceu e sua causa continua aberta.
+
 ## Como avaliar ou repetir
 
 Abra o relato, localize a revisão e o relatório e confira o que foi realmente provocado e comparado. Os JSON completos ficam nos próprios repositórios; credenciais, dumps e conteúdo privado ficam fora do Git. As falhas esperadas são identificadas, e os limites não são convertidos em sucesso.

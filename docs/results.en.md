@@ -90,6 +90,8 @@ The follow-up added static musl binary validation and corrected keyboard readine
 
 The [scheduler and signal captures](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-scheduling.en.md) added two sequential campaigns with 24 clean shutdowns and 12 valid traces under host load, with untraced controls and a task-limit test. The longest runnable wait was 13.262 ms. Two half-CPU shutdowns encountered throttling and both exited cleanly; the spontaneous panic did not recur. An initially empty capture and overlapping campaigns were retained and excluded from the final comparison.
 
+The [protocol investigation with kernel stacks](https://github.com/tommmdl/firecracker-lab/blob/main/docs/vcpu-protocol.en.md) followed the official binary through 20 clean shutdowns, ten instrumented. Channel waiting reached 5.867 ms and the join interval reached 83 µs. One futex stack was correlated with the channel-wait window. Setup, validator, and read errors remain visible; the historical panic did not recur and its cause remains unresolved.
+
 ## Evaluating or repeating the work
 
 Open the account, locate its revision and report, and check what was actually injected and compared. Complete JSON reports live in their repositories; credentials, dumps and private content stay outside Git. Expected failures are identified, and limits are not relabeled as success.
