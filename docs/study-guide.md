@@ -1,6 +1,6 @@
 # Uma ordem para estudar e repetir
 
-[English](study-guide.en.md) · [Início](../README.md) · [Arquitetura](architecture.md) · [Evidências](results.md)
+[English](study-guide.en.md) · [Início](../README.pt-BR.md) · [Arquitetura](architecture.md) · [Evidências](results.md)
 
 A sequência abaixo ajuda a conectar os assuntos sem exigir um calendário. Escolha uma etapa, execute seu exercício e anote o que conseguiu explicar. Os links abrem o README com os comandos e os cuidados daquele projeto.
 
@@ -30,8 +30,8 @@ estudos/
 | 3 · Entregar uma revisão | [Jenkins](https://github.com/tommmdl/jenkins-lab): provoque um build quebrado. [GitHub Actions](https://github.com/tommmdl/github-actions-lab): siga a imagem até o GHCR. | Qual etapa falhou, qual artefato ficou salvo e como conferir a identidade da imagem publicada. |
 | 4 · Descrever mudanças | [Terraform](https://github.com/tommmdl/terraform-lab): plan/apply, drift e destroy no Docker local. [Ansible](https://github.com/tommmdl/ansible-lab): duas execuções, mudança limitada e correção de drift. | O papel do state, o significado de um plano e por que a segunda execução de um role pode ter `changed=0`. |
 | 5 · Entender o cluster | [Kubernetes](https://github.com/tommmdl/kubernetes-lab): réplicas, Service, PVC e rollback. [Configuração](https://github.com/tommmdl/kubernetes-config-lab): ConfigMaps, Secrets, TLS e Downward API. | Quem repõe um Pod, como readiness muda os endpoints e o que um PVC preserva. |
-| 6 · Seguir o Git e avaliar imagens | [Argo CD](https://github.com/tommmdl/argocd-lab): compare drift sem/com self-heal. [Segurança](https://github.com/tommmdl/security-lab): leia um bloqueio e os relatórios das alternativas. | Quem controla o estado desejado, por que publicar não significa passar no gate e como separar achado, correção e mitigação. |
-| 7 · Observar de ponta a ponta | [Monitoring](https://github.com/tommmdl/monitoring-lab) → [Logging](https://github.com/tommmdl/logging-lab) → [Tracing](https://github.com/tommmdl/tracing-lab) → [Alerting](https://github.com/tommmdl/alerting-lab). Faça uma requisição e depois provoque uma falha. | Como passar de uma sonda ou alerta para logs e spans; como confirmar a recuperação e a entrega da notificação. |
+| 6 · Seguir o Git e avaliar imagens | [Argo CD](https://github.com/tommmdl/argocd-lab): compare drift sem/com self-heal. [Segurança](https://github.com/tommmdl/security-lab): leia um bloqueio e os relatórios das alternativas. | [Plataforma de entrega GitOps](https://github.com/tommmdl/gitops-delivery-platform): acompanhe uma imagem assinada dos checks do PR até o PR de promoção. | Quem controla o estado desejado, por que publicar não significa passar no gate e como separar achado, correção e mitigação, e o que o PR de promoção muda no Git. |
+| 7 · Observar de ponta a ponta | [Monitoring](https://github.com/tommmdl/monitoring-lab) → [Logging](https://github.com/tommmdl/logging-lab) → [Tracing](https://github.com/tommmdl/tracing-lab) → [Alerting](https://github.com/tommmdl/alerting-lab). Faça uma requisição e depois provoque uma falha. Depois, [Mimir](https://github.com/tommmdl/mimir-lab): pare o armazenamento e conte as amostras reenviadas. | Como passar de uma sonda ou alerta para logs e spans; como confirmar a recuperação e a entrega da notificação; como distinguir amostra persistida de amostra reenviada. |
 | 8 · Recuperar e retornar | [Backup](https://github.com/tommmdl/backup-restore-lab) → [DR](https://github.com/tommmdl/disaster-recovery-lab) → [Failover](https://github.com/tommmdl/failover-lab). Compare o ponto de backup, os dados restaurados e as escritas no destino. | Por que replicação e backup resolvem problemas diferentes; por que bloquear o escritor anterior e reconciliar uma resposta incerta. |
 | 9 · Investigar falhas | [Chaos Mesh](https://github.com/tommmdl/chaos-lab): acompanhe HTTP, alertas, eventos, pacotes e recuperação nas remoções. | A diferença entre recuperar réplicas e atender todas as requisições; o que prova um SYN sem resposta e o que continua desconhecido. |
 | 10 · Aprofundar em microVMs | [Firecracker](https://github.com/tommmdl/firecracker-lab): verifique fontes, compile kernel/rootfs, execute o boot em uma cópia e confira o encerramento. | Por que HTTP 204 não prova shutdown, como os hashes preservam os originais e quais proteções ainda não foram validadas. |
@@ -42,7 +42,7 @@ O Firecracker é uma trilha independente de aprofundamento: dá para iniciá-la 
 
 ## Dependências que merecem atenção
 
-A base da integração é o **kubernetes-lab**. O **argocd-lab** adota sua aplicação. O **monitoring-lab** prepara Prometheus e Grafana; o **logging-lab** acrescenta Loki e Alloy; o **tracing-lab** usa essas peças para ligar traces e logs. O **alerting-lab** reaproveita as sondas e o Prometheus.
+A base da integração é o **kubernetes-lab**. O **argocd-lab** adota sua aplicação. O **monitoring-lab** prepara Prometheus e Grafana; o **logging-lab** acrescenta Loki e Alloy; o **tracing-lab** usa essas peças para ligar traces e logs. O **alerting-lab** reaproveita as sondas e o Prometheus. O **mimir-lab** cria o próprio cluster `devops-sre` e espera o `kubernetes-lab` como pasta irmã, na revisão do seu `config/upstream.json`. O **gitops-delivery-platform** é independente.
 
 Antes do DR, complete o backup-restore-lab e guarde o kit descrito no disaster-recovery-lab. O failover-lab usa os dois clusters, com bancos próprios. O chaos-lab instala uma aplicação e observação isoladas no cluster de estudo; siga seu preparo de kernel e permissões.
 

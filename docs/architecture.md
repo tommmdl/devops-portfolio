@@ -1,6 +1,6 @@
 # Como os labs se conectam
 
-[English](architecture.en.md) · [Início](../README.md) · [Ordem de estudo](study-guide.md)
+[English](architecture.en.md) · [Início](../README.pt-BR.md) · [Ordem de estudo](study-guide.md)
 
 A aplicação de notas dá continuidade aos exercícios. A API usa Flask e Psycopg para acessar PostgreSQL; a variante instrumentada acrescenta OpenTelemetry. O código começa no [docker-lab](https://github.com/tommmdl/docker-lab), e os demais projetos escolhem revisões ou imagens específicas para seus testes.
 
@@ -46,6 +46,8 @@ flowchart LR
 
 O monitoring-lab mede disponibilidade e latência por sondas de `/healthz` e `/readyz`. O logging-lab coleta logs dos Pods autorizados. O tracing-lab acompanha spans da API e do cliente SQL, com ligação para os logs pelo trace ID. O alerting-lab reaproveita o Prometheus e o Blackbox e acrescenta Alertmanager e um receptor local.
 
+O [mimir-lab](https://github.com/tommmdl/mimir-lab) roda em um cluster próprio, `devops-sre`, com a API de uma revisão fixada do kubernetes-lab. Dois Prometheus sondam a API e enviam as amostras por `remote_write` para tenants separados em um Mimir monolítico com PVC; o Grafana lê cada tenant por um datasource próprio. Os testes reiniciam o Mimir com um dos escritores parado, para separar persistência de reenvio do Prometheus, e param o Mimir por 25 segundos para contar as amostras reenviadas depois da recuperação. O header de tenant roteia os dados; não é autenticação.
+
 Os spans SQL observam o cliente Psycopg. Os testes de notificação conferem entrega ao receptor local. Cada lab explica o alcance dessas observações e as falhas usadas para exercitá-las.
 
 ## Onde cada ambiente fica
@@ -63,6 +65,8 @@ Os spans SQL observam o cliente Psycopg. Os testes de notificação conferem ent
 | DR lab | Restaura o backup em `devops-recovery`, no namespace `dr-notes`, com a origem isolada do exercício parada. |
 | Failover lab | Namespace `failover-demo` em cada cluster, bancos próprios com replicação síncrona e gateway para a troca controlada. |
 | Chaos lab | Aplicação em `chaos-demo`, observação em `chaos-observe` e Chaos Mesh em `chaos-system`; os experimentos ficam separados da aplicação principal. |
+| Mimir lab | Cluster separado `devops-sre`, com cópia própria de `notes-lab` e namespace `mimir-lab`; os clusters anteriores não precisam estar ligados. |
+| Plataforma de entrega GitOps | Serviço FastAPI, cluster kind e stack Compose próprios. O CI cria e remove um cluster kind temporário; a referência Terraform de EKS é validada sem apply. |
 | Firecracker lab | MicroVM independente em Linux/WSL2 com KVM, kernel compilado e rootfs mínimo; sem Kubernetes, rede ou aplicação de notas no guest. |
 
 Ter namespaces ou clusters diferentes ajuda a delimitar os exercícios. Os ambientes locais continuam compartilhando Docker/WSL e o computador.
@@ -90,6 +94,22 @@ Os testes locais e de CI não estabelecem tolerância à perda do host, armazena
 O [firecracker-lab](https://github.com/tommmdl/firecracker-lab) parte de Linux e BusyBox com versões e hashes fixados, verifica a assinatura do kernel e monta um ext4 novo. Cada teste inicia uma cópia desse disco com Firecracker e confere respostas do guest, encerramento e hashes dos originais. O [relato](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md) mantém a falha de shutdown anterior e os dois boots aprovados depois da correção.
 
 Essa trilha não participa do fluxo de entrega da API ou dos clusters. Há [ensaios locais do jailer](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.md) com namespaces e cgroups, executados por um auxiliar privilegiado. Hardening do kernel/console, bootstrap mais restrito e testes de rede/restrições de saída continuam pendentes antes de evoluir para workloads de terceiros.
+
+## Uma plataforma de entrega separada
+
+O [gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) aplica o caminho de entrega a outro serviço, uma API FastAPI pequena e stateless, e por isso não depende da aplicação de notas nem das pastas irmãs.
+
+```mermaid
+flowchart LR
+  PR["Pull request"] --> CI["Lint, testes, Gitleaks, Trivy, kubeconform"]
+  CI --> Kind["Cluster kind temporário e carga com k6"]
+  Kind --> Merge["Merge na main"]
+  Merge --> Release["Imagem no GHCR, SBOM, assinatura Cosign, proveniência"]
+  Release --> Promo["PR de promoção com o digest"]
+  Promo --> Argo["Argo CD reconcilia"]
+```
+
+Aqui o release abre o PR de promoção; no argocd-lab, escolher o digest é um passo manual. A verificação independente da assinatura no cluster e um exercício de rollback GitOps continuam pendentes. A parte AWS é uma referência: Terraform de VPC, EKS e budgets, role OIDC só para plan e nenhum recurso criado. [Evidências e limitações](https://github.com/tommmdl/gitops-delivery-platform/blob/main/docs/validation.md).
 
 ## Antes de executar
 

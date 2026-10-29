@@ -1,6 +1,6 @@
 # Learning journal
 
-[Português](README.md) · [Back to the portfolio](../README.en.md)
+[Português](README.md) · [Back to the portfolio](../README.md)
 
 This is a place to keep track of changes, mistakes and things worth trying again. The entries below link to results already recorded in each lab.
 
@@ -67,7 +67,7 @@ The six-second timeout started during draining, before observed SIGTERM; the old
 
 ### 2026-10-20 — A clearer starting point
 
-The portfolio now connects all 18 labs through an architecture map, a study route and selected results with direct evidence links. [Start with the guide](../README.en.md) or open the [results](../docs/results.en.md). Older entries describe their own stage of the work.
+The portfolio now connects all 18 labs through an architecture map, a study route and selected results with direct evidence links. [Start with the guide](../README.md) or open the [results](../docs/results.en.md). Older entries describe their own stage of the work.
 
 The latest chaos investigation passed 146 CI checks and reproduced five TCP connect timeouts. Four had packet matches to departing Pods; the fifth began before the experiment and has no identified backend. Original HTTP errors, controls and the local observation gap remain in the [bilingual account](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.en.md). This portfolio update reorganizes those records; it does not report a new runtime test.
 

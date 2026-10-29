@@ -1,73 +1,73 @@
-# DevOps na prática
+# Platform Engineering Labs
 
-[English](README.en.md) · Português
+English · [Português](README.pt-BR.md)
 
-Este é o ponto de entrada dos meus labs de DevOps. O fio condutor é uma aplicação de notas com API e PostgreSQL: primeiro ela roda em containers; depois entram publicação de imagens, Kubernetes, GitOps, observabilidade e recuperação.
+This is the starting point for my platform engineering labs. A notes application with an API and PostgreSQL connects the work: it starts in containers, then grows into image publication, Kubernetes, GitOps, observability and recovery exercises.
 
-Cada repositório guarda o código, como executar o exercício e o que aconteceu nos testes. Também entram os builds quebrados, os restores com avisos e as investigações que ainda têm perguntas abertas.
+Each repository contains the code, instructions and a record of what happened during testing. Failed builds, restore warnings and investigations with open questions are part of that record.
 
-**[Arquitetura geral](docs/architecture.md) · [Ordem de estudo](docs/study-guide.md) · [Resultados e evidências](docs/results.md)**
+**[Architecture overview](docs/architecture.en.md) · [Study order](docs/study-guide.en.md) · [Results and evidence](docs/results.en.md)**
 
-## Uma visão do conjunto
+## How the work fits together
 
 ```mermaid
 flowchart TB
-  App["Aplicação de notas: API e PostgreSQL"]
+  App["Notes application: API and PostgreSQL"]
   App --> Docker["Docker Compose"]
-  App --> Kube["Kubernetes e GitOps"]
-  Kube --> Obs["Métricas, logs, traces e alertas"]
-  App --> Recovery["Ambientes próprios de backup, DR e failover"]
-  App --> Chaos["Ambiente isolado de Chaos Mesh"]
+  App --> Kube["Kubernetes and GitOps"]
+  Kube --> Obs["Metrics, logs, traces and alerts"]
+  App --> Recovery["Separate backup, DR and failover environments"]
+  App --> Chaos["Isolated Chaos Mesh environment"]
 ```
 
-Os labs reaproveitam a aplicação em ambientes diferentes. O [mapa de arquitetura](docs/architecture.md) detalha a publicação no GHCR, o papel do Argo CD e quais componentes são compartilhados. Jenkins, Terraform e Ansible têm exercícios próprios, conectados pela trilha de estudo. O Firecracker acrescenta uma trilha independente de microVMs em Linux/KVM; a aplicação de notas ainda não foi executada nesse guest.
+Labs reuse the application in different environments. The [architecture map](docs/architecture.en.md) explains GHCR publication, Argo CD's role and shared components. Jenkins, Terraform and Ansible have their own exercises, connected through the study route. Firecracker adds an independent Linux/KVM microVM route; the notes application has not been run in that guest.
 
-## Alguns resultados para abrir primeiro
+## A few results to open first
 
-| Pergunta | Onde olhar |
+| Question | Where to look |
 | --- | --- |
-| O que acontece quando uma réplica some? | [Captura na matriz de resiliência](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.md): 146 verificações no CI e cinco timeouts TCP reproduzidos; um backend continua sem identificação. |
-| A aplicação consegue ir para outro cluster e voltar? | [Failover e failback](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.md): 48 verificações locais e no CI, com bloqueio do escritor anterior e reconciliação de uma escrita incerta. |
-| O backup realmente restaura? | [Recuperação entre clusters](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.md): 32 verificações locais e no CI, com dados conferidos e dois avisos do restore mantidos. |
-| A imagem publicada é a que passou pelos testes? | [Entrega pelo GitHub Actions](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.md): execução registrada com 23 testes e conferência da identidade da imagem até o pull do GHCR. |
-| A microVM realmente inicia e encerra? | [Kernel e imagem do zero](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.md): dois boots locais aprovados após corrigir o shutdown, dez regressões e a falha inicial preservada; hardening continua pendente. |
+| What happens when a replica disappears? | [Capture inside the resilience matrix](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.en.md): 146 CI checks and five reproduced TCP timeouts; one backend remains unidentified. |
+| Can the application move to another cluster and return? | [Failover and failback](https://github.com/tommmdl/failover-lab/blob/main/docs/validation.en.md): 48 checks locally and in CI, with previous-writer fencing and reconciliation of an uncertain write. |
+| Does the backup actually restore? | [Cross-cluster recovery](https://github.com/tommmdl/disaster-recovery-lab/blob/main/docs/validation.en.md): 32 checks locally and in CI, with data comparisons and two retained restore warnings. |
+| Is the published image the one that passed its tests? | [GitHub Actions delivery](https://github.com/tommmdl/github-actions-lab/blob/main/docs/validation.en.md): a recorded run with 23 tests and image identity checks through the GHCR pull. |
+| Does the microVM actually boot and shut down? | [Kernel and image from scratch](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md): two passing local boots after fixing shutdown, ten regressions and the retained initial failure; hardening remains pending. |
 
-Os números pertencem às execuções indicadas nos links. O [guia de resultados](docs/results.md) reúne outras evidências, incluindo self-heal, tracing e migrações de imagens com rollback testado.
+Counts belong to the executions linked above. The [results guide](docs/results.en.md) includes further evidence for self-heal, tracing and image migrations with tested rollback.
 
-## Os 21 labs
+## The 21 labs
 
-| Etapa | Repositório | O que praticar |
+| Stage | Repository | What to practise |
 | --- | --- | --- |
-| 1 · Base | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab) | Ler memória, disco e carga antes de formular um diagnóstico. |
-| 2 · Aplicação | [docker-lab](https://github.com/tommmdl/docker-lab) | Conectar API e banco, preservar dados e recuperar uma falha de dependência. |
-| 3 · Entrega | [jenkins-lab](https://github.com/tommmdl/jenkins-lab) | Comparar builds de sucesso e falha e os artefatos dos dois. |
-| 3 · Entrega | [github-actions-lab](https://github.com/tommmdl/github-actions-lab) | Testar uma revisão da aplicação e publicar a mesma imagem no GHCR. |
-| 4 · Automação | [terraform-lab](https://github.com/tommmdl/terraform-lab) | Criar recursos Docker com módulos, observar drift e executar destroy. |
-| 4 · Automação | [ansible-lab](https://github.com/tommmdl/ansible-lab) | Configurar dois alvos Docker, conferir idempotência e corrigir drift. |
-| 5 · Cluster | [kubernetes-lab](https://github.com/tommmdl/kubernetes-lab) | Explorar réplicas, Services, PVCs, escala e rollback em kind. |
-| 5 · Cluster | [kubernetes-config-lab](https://github.com/tommmdl/kubernetes-config-lab) | Praticar 26 exercícios de ConfigMaps, Secrets, TLS e Downward API. |
-| 6 · Estado desejado | [argocd-lab](https://github.com/tommmdl/argocd-lab) | Comparar drift com self-heal desligado e ligado. |
-| 6 · Imagens | [security-lab](https://github.com/tommmdl/security-lab) | Ler scans, entender bloqueios e testar alternativas sem ocultar achados. |
-| 6 · Plataforma de entrega | [gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) | Promover por PR GitOps uma imagem assinada e fixada por digest, com SBOM, integração em kind e referência Terraform de EKS validada sem apply. |
-| 7 · Observabilidade | [monitoring-lab](https://github.com/tommmdl/monitoring-lab) | Consultar sondas HTTP no Prometheus e no Grafana. |
-| 7 · Observabilidade | [logging-lab](https://github.com/tommmdl/logging-lab) | Seguir logs da API e do banco pelo Alloy, Loki e Grafana. |
-| 7 · Observabilidade | [tracing-lab](https://github.com/tommmdl/tracing-lab) | Acompanhar spans HTTP/SQL e localizar logs pelo trace ID. |
-| 7 · Observabilidade | [alerting-lab](https://github.com/tommmdl/alerting-lab) | Provocar falhas e conferir notificações, agrupamento e recuperação. |
-| 7 · Observabilidade | [mimir-lab](https://github.com/tommmdl/mimir-lab) | Enviar métricas de dois Prometheus para tenants separados no Mimir e conferir persistência e recuperação. |
-| 8 · Recuperação | [backup-restore-lab](https://github.com/tommmdl/backup-restore-lab) | Restaurar recursos e dump PostgreSQL com Velero em outro namespace. |
-| 8 · Recuperação | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab) | Recuperar em outro cluster com a origem do exercício parada e isolada. |
-| 8 · Recuperação | [failover-lab](https://github.com/tommmdl/failover-lab) | Executar uma troca controlada com replicação síncrona e retorno dos dados. |
-| 9 · Investigação | [chaos-lab](https://github.com/tommmdl/chaos-lab) | Exercitar falhas de Pods/rede e cruzar HTTP, alertas, pacotes e eventos do kernel. |
-| 10 · MicroVMs | [firecracker-lab](https://github.com/tommmdl/firecracker-lab) | Construir kernel/rootfs com fontes fixados, testar boot e shutdown e examinar o hardening pendente. |
+| 1 · Foundations | [linux-operations-lab](https://github.com/tommmdl/linux-operations-lab/blob/main/README.en.md) | Read memory, disk and load before forming a diagnosis. |
+| 2 · Application | [docker-lab](https://github.com/tommmdl/docker-lab/blob/main/README.en.md) | Connect API and database, retain data and recover from a dependency failure. |
+| 3 · Delivery | [jenkins-lab](https://github.com/tommmdl/jenkins-lab/blob/main/README.en.md) | Compare successful and failed builds and both sets of artifacts. |
+| 3 · Delivery | [github-actions-lab](https://github.com/tommmdl/github-actions-lab/blob/main/README.en.md) | Test an application revision and publish the same image to GHCR. |
+| 4 · Automation | [terraform-lab](https://github.com/tommmdl/terraform-lab/blob/main/README.en.md) | Create Docker resources with modules, observe drift and run destroy. |
+| 4 · Automation | [ansible-lab](https://github.com/tommmdl/ansible-lab/blob/main/README.en.md) | Configure two Docker targets, verify idempotence and repair drift. |
+| 5 · Cluster | [kubernetes-lab](https://github.com/tommmdl/kubernetes-lab/blob/main/README.en.md) | Explore replicas, Services, PVCs, scaling and rollback in kind. |
+| 5 · Cluster | [kubernetes-config-lab](https://github.com/tommmdl/kubernetes-config-lab/blob/main/README.en.md) | Work through 26 ConfigMap, Secret, TLS and Downward API exercises. |
+| 6 · Desired state | [argocd-lab](https://github.com/tommmdl/argocd-lab/blob/main/README.en.md) | Compare drift with self-heal disabled and enabled. |
+| 6 · Images | [security-lab](https://github.com/tommmdl/security-lab/blob/main/README.en.md) | Read scans, understand blocked gates and test alternatives while retaining findings. |
+| 6 · Delivery platform | [gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) | Promote a signed, digest-pinned image through a GitOps PR, with SBOM, kind integration and a Terraform EKS reference validated without apply. |
+| 7 · Observability | [monitoring-lab](https://github.com/tommmdl/monitoring-lab/blob/main/README.en.md) | Query HTTP probes through Prometheus and Grafana. |
+| 7 · Observability | [logging-lab](https://github.com/tommmdl/logging-lab/blob/main/README.en.md) | Follow API and database logs through Alloy, Loki and Grafana. |
+| 7 · Observability | [tracing-lab](https://github.com/tommmdl/tracing-lab/blob/main/README.en.md) | Follow HTTP/SQL spans and locate logs using the trace ID. |
+| 7 · Observability | [alerting-lab](https://github.com/tommmdl/alerting-lab/blob/main/README.en.md) | Introduce faults and verify notifications, grouping and recovery. |
+| 7 · Observability | [mimir-lab](https://github.com/tommmdl/mimir-lab/blob/main/README.en.md) | Send metrics from two Prometheus servers to separate Mimir tenants and check persistence and recovery. |
+| 8 · Recovery | [backup-restore-lab](https://github.com/tommmdl/backup-restore-lab/blob/main/README.en.md) | Restore resources and a PostgreSQL dump with Velero into another namespace. |
+| 8 · Recovery | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab/blob/main/README.en.md) | Recover into another cluster with the exercise source stopped and fenced. |
+| 8 · Recovery | [failover-lab](https://github.com/tommmdl/failover-lab/blob/main/README.en.md) | Perform a controlled switch with synchronous replication and return the data. |
+| 9 · Investigation | [chaos-lab](https://github.com/tommmdl/chaos-lab/blob/main/README.en.md) | Exercise Pod/network faults and correlate HTTP, alerts, packets and kernel events. |
+| 10 · MicroVMs | [firecracker-lab](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md) | Build a kernel/rootfs from pinned sources, test boot and shutdown, and examine pending hardening. |
 
-A [ordem de estudo](docs/study-guide.md) explica o que preparar, o que observar e quando avançar. Dá para começar por Linux e Docker ou abrir um resultado e voltar às peças que o sustentam.
+The [study order](docs/study-guide.en.md) explains what to prepare, observe and understand before moving on. Start with Linux and Docker, or open a result and work back through the components behind it.
 
-## Como acompanhar e repetir
+## Following and repeating the work
 
-Cada README de lab tem seus pré-requisitos, instalação e limpeza. Várias integrações usam repositórios como pastas irmãs; o guia indica essas dependências. O portfólio não exige subir todos os ambientes ao mesmo tempo.
+Each lab README covers its prerequisites, setup and cleanup. Several integrations expect sibling repository checkouts; the guide identifies these dependencies. You can explore the portfolio without running every environment at once.
 
-Os testes são de laboratório, em Docker/WSL, kind e microVMs Firecracker com KVM. Clusters no mesmo host compartilham um domínio de falha; os ensaios de recuperação não medem perda da máquina ou disponibilidade de produção. Scans e tempos de teste são fotografias das execuções registradas.
+Tests use Docker/WSL, kind and Firecracker microVMs with KVM. Clusters on the same host share a failure domain; recovery exercises do not measure machine loss or production availability. Scans and timings describe the recorded executions.
 
-Usei um assistente de código (Claude Code) para escrever boa parte dos scripts, manifests e da documentação. As decisões são minhas: quais cenários testar e com quais ferramentas, o que conta como aprovado, a execução e a conferência de cada validação e a investigação das falhas, como o falso positivo na checagem de troca de Pods do chaos-lab e a suposição errada sobre a sequência de IDs no failover-lab. Cada afirmação aponta para um relatório que dá para repetir. O [diário](journal/README.md) registra a evolução; o [modelo de anotação](templates/daily-log.md) ajuda a guardar hipóteses, erros e próximos passos. O ritmo é livre, sem publicação diária automática.
+I used an AI coding assistant (Claude Code) to write much of the scripts, manifests and documentation. The decisions are mine: which scenarios to test and with which tools, what counts as a pass, running and checking every validation, and investigating the failures, such as the false positive in the chaos-lab Pod replacement check and the wrong ID-sequence assumption in the failover-lab. Every claim links to a report that can be rerun. The [journal](journal/README.en.md) tracks progress; the [notes template](templates/daily-log.en.md) helps record hypotheses, mistakes and next steps. The pace is flexible, with no automatic daily publication.
 
-Documentação em português e inglês · [Sobre a revisão do histórico](docs/history.md)
+Documentation in Portuguese and English · [About the history update](docs/history.md)

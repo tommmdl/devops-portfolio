@@ -1,6 +1,6 @@
 # How the labs fit together
 
-[Português](architecture.md) · [Home](../README.en.md) · [Study order](study-guide.en.md)
+[Português](architecture.md) · [Home](../README.md) · [Study order](study-guide.en.md)
 
 The notes application connects the exercises. Its API uses Flask and Psycopg to access PostgreSQL; the instrumented variant adds OpenTelemetry. Code starts in [docker-lab](https://github.com/tommmdl/docker-lab), while other projects select specific revisions or images for their tests.
 
@@ -46,6 +46,8 @@ flowchart LR
 
 Monitoring-lab measures availability and latency through `/healthz` and `/readyz` probes. Logging-lab collects logs from authorized Pods. Tracing-lab follows API and SQL-client spans, with links to logs through the trace ID. Alerting-lab reuses Prometheus and Blackbox and adds Alertmanager and a local receiver.
 
+[Mimir-lab](https://github.com/tommmdl/mimir-lab/blob/main/README.en.md) runs in its own `devops-sre` cluster, with the API from a pinned kubernetes-lab revision. Two Prometheus instances probe the API and send samples by `remote_write` to separate tenants in a monolithic Mimir with a PVC; Grafana reads each tenant through its own datasource. The tests restart Mimir with one writer stopped to separate persistence from Prometheus replay, and stop Mimir for 25 seconds to count the samples resent after recovery. The tenant header routes data; it is not authentication.
+
 SQL spans observe the Psycopg client. Notification tests check delivery to the local receiver. Each lab explains the scope of these observations and the faults used to exercise them.
 
 ## Where environments run
@@ -63,6 +65,8 @@ SQL spans observe the Psycopg client. Notification tests check delivery to the l
 | DR lab | Restores the backup into `devops-recovery`, in namespace `dr-notes`, with the exercise's isolated source stopped. |
 | Failover lab | Namespace `failover-demo` in each cluster, dedicated synchronously replicated databases and a gateway for controlled switching. |
 | Chaos lab | Application in `chaos-demo`, observation in `chaos-observe` and Chaos Mesh in `chaos-system`; experiments are separated from the main application. |
+| Mimir lab | Separate `devops-sre` cluster with its own `notes-lab` copy and `mimir-lab` namespace; earlier clusters need not run. |
+| GitOps delivery platform | Its own FastAPI service, kind cluster and Compose stack. CI creates and removes a temporary kind cluster; the Terraform EKS reference is validated without apply. |
 | Firecracker lab | Independent Linux/WSL2 KVM microVM with a compiled kernel and minimal rootfs; no Kubernetes, networking or notes application inside the guest. |
 
 Separate namespaces or clusters help define exercise boundaries. Local environments still share Docker/WSL and the computer.
@@ -90,6 +94,22 @@ Local and CI tests do not establish host-loss tolerance, offsite storage, automa
 [Firecracker-lab](https://github.com/tommmdl/firecracker-lab/blob/main/README.en.md) starts with pinned Linux and BusyBox versions and hashes, verifies the kernel signature and builds a fresh ext4 image. Each test boots a copy through Firecracker and checks guest responses, shutdown and unchanged original hashes. The [account](https://github.com/tommmdl/firecracker-lab/blob/main/docs/build-from-source.en.md) retains the earlier shutdown failure and two passing boots after the correction.
 
 This route is separate from API delivery and the clusters. [Local jailer exercises](https://github.com/tommmdl/firecracker-lab/blob/main/docs/jailer.en.md) cover namespaces and cgroups using a privileged helper. Kernel/console hardening, narrower bootstrap privileges and networking/outbound restriction tests remain before moving to third-party workloads.
+
+## A separate delivery platform
+
+[gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) applies the delivery path to a different service, a small stateless FastAPI API, so it does not depend on the notes application or the sibling checkouts.
+
+```mermaid
+flowchart LR
+  PR["Pull request"] --> CI["Lint, tests, Gitleaks, Trivy, kubeconform"]
+  CI --> Kind["Temporary kind cluster and k6 load test"]
+  Kind --> Merge["Merge to main"]
+  Merge --> Release["GHCR image, SBOM, Cosign signature, provenance"]
+  Release --> Promo["Promotion PR with the digest"]
+  Promo --> Argo["Argo CD reconciles"]
+```
+
+Here a release opens the promotion PR, while in argocd-lab choosing a digest is a manual step. Independent signature verification in the cluster and a GitOps rollback exercise are still pending. The AWS side is a reference: Terraform for VPC, EKS and budgets, a plan-only OIDC role, and no resources created. [Evidence and limitations](https://github.com/tommmdl/gitops-delivery-platform/blob/main/docs/validation.md).
 
 ## Before running anything
 

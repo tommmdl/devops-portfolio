@@ -1,6 +1,6 @@
 # Results that explain the work
 
-[Português](results.md) · [Home](../README.en.md) · [Architecture](architecture.en.md) · [Study order](study-guide.en.md)
+[Português](results.md) · [Home](../README.md) · [Architecture](architecture.en.md) · [Study order](study-guide.en.md)
 
 Selection reviewed on **2026-10-21**. These records show decisions, failures or recoveries that can be inspected. Counts belong to the cited executions; they are not a cumulative score or a promise about the next run.
 

@@ -1,6 +1,6 @@
 # Diário de aprendizado
 
-[English](README.en.md) · [Voltar ao portfólio](../README.md)
+[English](README.en.md) · [Voltar ao portfólio](../README.pt-BR.md)
 
 Este é o lugar para guardar o que mudou, o que deu errado e o que merece outra tentativa. Os registros abaixo apontam para os resultados já obtidos em cada laboratório.
 
@@ -68,7 +68,7 @@ O timeout de seis segundos começou durante a drenagem, antes do SIGTERM observa
 
 ### 20/10/2026 — Uma entrada mais clara para os projetos
 
-O portfólio agora conecta os 18 labs por um mapa de arquitetura, uma ordem de estudo e resultados selecionados com links diretos para as evidências. [Comece pelo guia](../README.md) ou abra os [resultados](../docs/results.md). As entradas anteriores descrevem cada etapa na época em que foi registrada.
+O portfólio agora conecta os 18 labs por um mapa de arquitetura, uma ordem de estudo e resultados selecionados com links diretos para as evidências. [Comece pelo guia](../README.pt-BR.md) ou abra os [resultados](../docs/results.md). As entradas anteriores descrevem cada etapa na época em que foi registrada.
 
 A investigação mais recente de caos passou em 146 verificações no CI e reproduziu cinco timeouts na conexão TCP. Quatro tiveram pacotes associados a Pods em encerramento; o quinto começou antes do experimento e continua sem backend identificado. Erros HTTP, controles e a lacuna da observação local ficam no [relato bilíngue](https://github.com/tommmdl/chaos-lab/blob/main/docs/resilience-timeouts.md). Esta atualização organiza os registros; não declara um novo teste dos ambientes.
 

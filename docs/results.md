@@ -1,6 +1,6 @@
 # Resultados que ajudam a entender o trabalho
 
-[English](results.en.md) · [Início](../README.md) · [Arquitetura](architecture.md) · [Ordem de estudo](study-guide.md)
+[English](results.en.md) · [Início](../README.pt-BR.md) · [Arquitetura](architecture.md) · [Ordem de estudo](study-guide.md)
 
 Seleção revisada em **21/10/2026**. Escolhi estes registros porque mostram uma decisão, uma falha ou uma recuperação que dá para inspecionar. Os números pertencem às execuções citadas; não são um placar acumulado nem uma promessa sobre a próxima execução.
 
