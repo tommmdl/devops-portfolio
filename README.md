@@ -34,7 +34,7 @@ Os labs reaproveitam a aplicação em ambientes diferentes. O [mapa de arquitetu
 
 Os números pertencem às execuções indicadas nos links. O [guia de resultados](docs/results.md) reúne outras evidências, incluindo self-heal, tracing e migrações de imagens com rollback testado.
 
-## Os 19 labs
+## Os 21 labs
 
 | Etapa | Repositório | O que praticar |
 | --- | --- | --- |
@@ -48,10 +48,12 @@ Os números pertencem às execuções indicadas nos links. O [guia de resultados
 | 5 · Cluster | [kubernetes-config-lab](https://github.com/tommmdl/kubernetes-config-lab) | Praticar 26 exercícios de ConfigMaps, Secrets, TLS e Downward API. |
 | 6 · Estado desejado | [argocd-lab](https://github.com/tommmdl/argocd-lab) | Comparar drift com self-heal desligado e ligado. |
 | 6 · Imagens | [security-lab](https://github.com/tommmdl/security-lab) | Ler scans, entender bloqueios e testar alternativas sem ocultar achados. |
+| 6 · Plataforma de entrega | [gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) | Promover por PR GitOps uma imagem assinada e fixada por digest, com SBOM, integração em kind e referência Terraform de EKS validada sem apply. |
 | 7 · Observabilidade | [monitoring-lab](https://github.com/tommmdl/monitoring-lab) | Consultar sondas HTTP no Prometheus e no Grafana. |
 | 7 · Observabilidade | [logging-lab](https://github.com/tommmdl/logging-lab) | Seguir logs da API e do banco pelo Alloy, Loki e Grafana. |
 | 7 · Observabilidade | [tracing-lab](https://github.com/tommmdl/tracing-lab) | Acompanhar spans HTTP/SQL e localizar logs pelo trace ID. |
 | 7 · Observabilidade | [alerting-lab](https://github.com/tommmdl/alerting-lab) | Provocar falhas e conferir notificações, agrupamento e recuperação. |
+| 7 · Observabilidade | [mimir-lab](https://github.com/tommmdl/mimir-lab) | Enviar métricas de dois Prometheus para tenants separados no Mimir e conferir persistência e recuperação. |
 | 8 · Recuperação | [backup-restore-lab](https://github.com/tommmdl/backup-restore-lab) | Restaurar recursos e dump PostgreSQL com Velero em outro namespace. |
 | 8 · Recuperação | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab) | Recuperar em outro cluster com a origem do exercício parada e isolada. |
 | 8 · Recuperação | [failover-lab](https://github.com/tommmdl/failover-lab) | Executar uma troca controlada com replicação síncrona e retorno dos dados. |
@@ -66,6 +68,6 @@ Cada README de lab tem seus pré-requisitos, instalação e limpeza. Várias int
 
 Os testes são de laboratório, em Docker/WSL, kind e microVMs Firecracker com KVM. Clusters no mesmo host compartilham um domínio de falha; os ensaios de recuperação não medem perda da máquina ou disponibilidade de produção. Scans e tempos de teste são fotografias das execuções registradas.
 
-A implementação e as primeiras validações tiveram ajuda do assistente. Repetir os exercícios e explicar as decisões faz parte do estudo. O [diário](journal/README.md) registra a evolução; o [modelo de anotação](templates/daily-log.md) ajuda a guardar hipóteses, erros e próximos passos. O ritmo é livre, sem publicação diária automática.
+Usei um assistente de código (Claude Code) para escrever boa parte dos scripts, manifests e da documentação. As decisões são minhas: quais cenários testar e com quais ferramentas, o que conta como aprovado, a execução e a conferência de cada validação e a investigação das falhas, como o falso positivo na checagem de troca de Pods do chaos-lab e a suposição errada sobre a sequência de IDs no failover-lab. Cada afirmação aponta para um relatório que dá para repetir. O [diário](journal/README.md) registra a evolução; o [modelo de anotação](templates/daily-log.md) ajuda a guardar hipóteses, erros e próximos passos. O ritmo é livre, sem publicação diária automática.
 
 Documentação em português e inglês · [Sobre a revisão do histórico](docs/history.md)

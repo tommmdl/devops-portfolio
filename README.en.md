@@ -34,7 +34,7 @@ Labs reuse the application in different environments. The [architecture map](doc
 
 Counts belong to the executions linked above. The [results guide](docs/results.en.md) includes further evidence for self-heal, tracing and image migrations with tested rollback.
 
-## The 19 labs
+## The 21 labs
 
 | Stage | Repository | What to practise |
 | --- | --- | --- |
@@ -48,10 +48,12 @@ Counts belong to the executions linked above. The [results guide](docs/results.e
 | 5 · Cluster | [kubernetes-config-lab](https://github.com/tommmdl/kubernetes-config-lab/blob/main/README.en.md) | Work through 26 ConfigMap, Secret, TLS and Downward API exercises. |
 | 6 · Desired state | [argocd-lab](https://github.com/tommmdl/argocd-lab/blob/main/README.en.md) | Compare drift with self-heal disabled and enabled. |
 | 6 · Images | [security-lab](https://github.com/tommmdl/security-lab/blob/main/README.en.md) | Read scans, understand blocked gates and test alternatives while retaining findings. |
+| 6 · Delivery platform | [gitops-delivery-platform](https://github.com/tommmdl/gitops-delivery-platform) | Promote a signed, digest-pinned image through a GitOps PR, with SBOM, kind integration and a Terraform EKS reference validated without apply. |
 | 7 · Observability | [monitoring-lab](https://github.com/tommmdl/monitoring-lab/blob/main/README.en.md) | Query HTTP probes through Prometheus and Grafana. |
 | 7 · Observability | [logging-lab](https://github.com/tommmdl/logging-lab/blob/main/README.en.md) | Follow API and database logs through Alloy, Loki and Grafana. |
 | 7 · Observability | [tracing-lab](https://github.com/tommmdl/tracing-lab/blob/main/README.en.md) | Follow HTTP/SQL spans and locate logs using the trace ID. |
 | 7 · Observability | [alerting-lab](https://github.com/tommmdl/alerting-lab/blob/main/README.en.md) | Introduce faults and verify notifications, grouping and recovery. |
+| 7 · Observability | [mimir-lab](https://github.com/tommmdl/mimir-lab/blob/main/README.en.md) | Send metrics from two Prometheus servers to separate Mimir tenants and check persistence and recovery. |
 | 8 · Recovery | [backup-restore-lab](https://github.com/tommmdl/backup-restore-lab/blob/main/README.en.md) | Restore resources and a PostgreSQL dump with Velero into another namespace. |
 | 8 · Recovery | [disaster-recovery-lab](https://github.com/tommmdl/disaster-recovery-lab/blob/main/README.en.md) | Recover into another cluster with the exercise source stopped and fenced. |
 | 8 · Recovery | [failover-lab](https://github.com/tommmdl/failover-lab/blob/main/README.en.md) | Perform a controlled switch with synchronous replication and return the data. |
@@ -66,6 +68,6 @@ Each lab README covers its prerequisites, setup and cleanup. Several integration
 
 Tests use Docker/WSL, kind and Firecracker microVMs with KVM. Clusters on the same host share a failure domain; recovery exercises do not measure machine loss or production availability. Scans and timings describe the recorded executions.
 
-Implementation and initial validation were assistant-assisted. Repeating the exercises and explaining decisions remain part of the learning work. The [journal](journal/README.en.md) tracks progress; the [notes template](templates/daily-log.en.md) helps record hypotheses, mistakes and next steps. The pace is flexible, with no automatic daily publication.
+I used an AI coding assistant (Claude Code) to write much of the scripts, manifests and documentation. The decisions are mine: which scenarios to test and with which tools, what counts as a pass, running and checking every validation, and investigating the failures, such as the false positive in the chaos-lab Pod replacement check and the wrong ID-sequence assumption in the failover-lab. Every claim links to a report that can be rerun. The [journal](journal/README.en.md) tracks progress; the [notes template](templates/daily-log.en.md) helps record hypotheses, mistakes and next steps. The pace is flexible, with no automatic daily publication.
 
 Documentation in Portuguese and English · [About the history update](docs/history.md)
